@@ -1,0 +1,178 @@
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import Image from 'next/image';
+import { Menu, X } from 'lucide-react';
+
+const Navigation = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [currentSection, setCurrentSection] = useState('inicio');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const navItems = [
+    { name: 'Inicio', href: '#inicio' },
+    { name: 'Servicios', href: '#servicios' },
+    { name: 'Proceso', href: '#proceso' },
+    { name: 'Proyectos', href: '#proyectos' },
+    { name: 'Contacto', href: '#contacto' }
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 50);
+
+      // Detectar sección actual
+      const sections = ['inicio', 'servicios', 'proceso', 'proyectos', 'contacto'];
+      let currentSectionTemp = 'inicio';
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && scrollY >= section.offsetTop - 200) {
+          currentSectionTemp = sections[i];
+          break;
+        }
+      }
+
+      setCurrentSection(currentSectionTemp);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Secciones oscuras: Hero y Projects
+  const isDarkSection = currentSection === 'inicio' || currentSection === 'proyectos';
+  const logoSrc = (isDarkSection || isMenuOpen)
+    ? "/images/logos/isologo-code-200-ti-dark.webp" 
+    : "/images/logos/isologo-code-200-ti.webp";
+
+  return (
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      className={`fixed top-0 w-full z-50 ${isMenuOpen ? 'transition-none' : 'transition-all duration-300'} ${
+        isMenuOpen
+          ? 'bg-[#0f172a] border-b border-white/20'
+          : isDarkSection 
+          ? 'backdrop-blur-lg border-b border-white/20' 
+          : 'backdrop-blur-lg border-b border-gray-200/50'
+      }`}
+    >
+      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
+        <Link href="/">
+          <motion.div 
+            className="cursor-pointer"
+            whileHover={{ scale: 1.05 }}
+          >
+            <Image 
+              src={logoSrc}
+              alt="CODE 200 TI Logo"
+              width={150}
+              height={50}
+              className="h-18 w-auto"
+            />
+          </motion.div>
+        </Link>
+        <div className="hidden md:flex gap-8">
+          {navItems.map((item) => (
+            <motion.div key={item.name} whileHover={{ y: -2 }}>
+              <a
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const target = document.querySelector(item.href);
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                }}
+                className={`transition-colors cursor-pointer ${
+                  isDarkSection 
+                    ? 'text-white hover:text-[#6fcc70]' 
+                    : 'text-gray-700 hover:text-[#234f70]'
+                }`}
+              >
+                {item.name}
+              </a>
+            </motion.div>
+          ))}
+        </div>
+        {/* Botón menú móvil */}
+        <button
+          className={`md:hidden p-2 rounded-lg transition-colors relative z-50 ${
+            isMenuOpen
+              ? 'text-white hover:bg-white/10 border border-white/20'
+              : isDarkSection
+              ? 'text-white hover:bg-white/10 border border-white/20'
+              : 'text-gray-900 hover:bg-gray-100 border border-gray-300'
+          }`}
+          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+        >
+          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+        </button>
+        <motion.button
+          className={`hidden md:inline-flex px-4 py-2 rounded-full font-semibold transition-all cursor-pointer ${
+            isDarkSection 
+              ? 'bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30' 
+              : 'bg-gradient-to-r from-[#234f70] to-[#6fcc70] text-white'
+          }`}
+          onClick={(e) => {
+            e.preventDefault();
+            const target = document.querySelector('#contacto');
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Cotizar Proyecto
+        </motion.button>
+      </div>
+      {/* Overlay menú móvil */}
+      {isMenuOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.2 }}
+          className="fixed inset-0 top-[72px] bg-[#0f172a] text-white md:hidden z-40"
+          onClick={() => setIsMenuOpen(false)}
+        >
+          <motion.div 
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
+            className="max-w-7xl mx-auto px-6 pt-8 pb-12 flex flex-col gap-2"
+          >
+            {navItems.map((item, index) => (
+              <motion.a
+                key={item.name}
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3, delay: 0.1 + (index * 0.05) }}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  const target = document.querySelector(item.href);
+                  if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }
+                  setIsMenuOpen(false);
+                }}
+                className="text-2xl font-semibold py-4 border-b border-white/10 hover:text-[#6fcc70] transition-colors"
+              >
+                {item.name}
+              </motion.a>
+            ))}
+          </motion.div>
+        </motion.div>
+      )}
+    </motion.nav>
+  );
+};
+
+export default Navigation;
