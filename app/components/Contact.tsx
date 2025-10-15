@@ -97,7 +97,7 @@ const Contact = () => {
             ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Sitio Web</span> Profesional?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Transformamos tu idea en una presencia digital que atrae clientes y genera resultados reales.
+            Desarrollamos sitios web profesionales que impulsan el crecimiento de tu empresa.
           </p>
         </motion.div>
 
@@ -114,7 +114,7 @@ const Contact = () => {
                 Información de <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Contacto</span>
               </h3>
               <p className="text-gray-600 mb-8">
-                Múltiples formas de ponerte en contacto con nosotros
+                Contáctanos para analizar tu proyecto
               </p>
             </div>
 
@@ -148,7 +148,7 @@ const Contact = () => {
                 Envíanos un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Mensaje</span>
               </h3>
               <p className="text-gray-600">
-                Cuéntanos sobre tu negocio y te responderemos pronto
+                Describe tu proyecto y te contactaremos pronto
               </p>
             </div>
 

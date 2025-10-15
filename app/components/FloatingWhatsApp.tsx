@@ -19,7 +19,7 @@ const FloatingWhatsApp = ({ phoneNumber, message = "Hola! Me interesa conocer m√
   return (
     <motion.button
       onClick={handleWhatsAppClick}
-      className="fixed bottom-6 right-6 z-50 w-20 h-20 shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center group cursor-pointer"
+      className="fixed bottom-6 right-6 z-50 w-20 h-20 transition-all duration-300 flex items-center justify-center group cursor-pointer rounded-full"
       whileHover={{ scale: 1.2 }}
       whileTap={{ scale: 0.9 }}
       initial={{ opacity: 0, scale: 0 }}

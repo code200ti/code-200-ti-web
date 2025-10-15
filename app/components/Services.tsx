@@ -44,7 +44,7 @@ const Services = () => {
             Servicios que <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Ofrecemos</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Soluciones completas de desarrollo web adaptadas a tus necesidades
+            Servicios profesionales de desarrollo web para empresas
           </p>
         </motion.div>
 

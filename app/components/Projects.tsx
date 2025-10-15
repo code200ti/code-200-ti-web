@@ -62,7 +62,7 @@ const Projects = () => {
             Proyectos <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Destacados</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Experiencias digitales que han transformado negocios
+            Soluciones web que han impulsado el crecimiento de empresas
           </p>
         </motion.div>
 
@@ -88,17 +88,19 @@ const Projects = () => {
               </div>
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform">
-                <span className="text-sm text-[#6fcc70] mb-2">{project.category}</span>
-                <h3 className="text-3xl font-bold mb-3 text-white">{project.title}</h3>
-                <div className="flex gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* Overlay oscuro para mejor legibilidad */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-t-2xl" />
+                <span className="text-sm text-[#6fcc70] mb-2 relative z-10 font-semibold">{project.category}</span>
+                <h3 className="text-3xl font-bold mb-3 text-white relative z-10 drop-shadow-lg">{project.title}</h3>
+                <div className="flex gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
                   {project.tech.map((tech, i) => (
-                    <span key={i} className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-sm text-white">
+                    <span key={i} className="px-3 py-1 bg-white/30 backdrop-blur-sm rounded-full text-sm text-white font-medium border border-white/20">
                       {tech}
                     </span>
                   ))}
                 </div>
-                <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <button className="flex items-center gap-2 text-sm hover:text-[#6fcc70] transition-colors text-white">
+                <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                  <button className="flex items-center gap-2 text-sm hover:text-[#6fcc70] transition-colors text-white font-semibold drop-shadow-md">
                     Ver Proyecto <ExternalLink className="w-4 h-4" />
                   </button>
                 </div>

@@ -9,32 +9,32 @@ const Process = () => {
     {
       icon: <Search className="w-8 h-8" />,
       title: "1. Consulta Inicial",
-      description: "Analizamos tus necesidades y objetivos para entender perfectamente tu negocio",
+      description: "Analizamos tus necesidades y objetivos para entender perfectamente tu empresa",
       details: ["Respuesta en 24 horas", "Análisis detallado", "Propuesta personalizada"]
     },
     {
       icon: <Palette className="w-8 h-8" />,
       title: "2. Diseño & Planificación",
-      description: "Creamos wireframes, mockups y planificamos la arquitectura técnica",
-      details: ["Diseño responsive incluido", "Wireframes interactivos", "Planificación detallada"]
+      description: "Creamos wireframes, mockups y planificamos la arquitectura técnica para tu proyecto",
+      details: ["Diseño responsive incluido", "Wireframes detallados", "Planificación completa"]
     },
     {
       icon: <Code className="w-8 h-8" />,
       title: "3. Desarrollo",
-      description: "Implementamos tu solución digital usando las mejores tecnologías y prácticas",
-      details: ["Desarrollo eficiente", "Sitio web optimizado", "Pruebas de calidad"]
+      description: "Implementamos tu solución digital usando las mejores herramientas y metodologías",
+      details: ["Desarrollo profesional", "Sitio web optimizado", "Pruebas de funcionalidad"]
     },
     {
       icon: <Rocket className="w-8 h-8" />,
       title: "4. Lanzamiento",
-      description: "Desplegamos tu solución y optimizamos para el mejor rendimiento",
+      description: "Desplegamos tu solución y optimizamos para el mejor rendimiento de tu empresa",
       details: ["SEO incluido", "Optimización completa", "Monitoreo inicial"]
     },
     {
       icon: <CheckCircle className="w-8 h-8" />,
       title: "5. Soporte & Mantenimiento",
-      description: "Te acompañamos con soporte técnico y actualizaciones continuas",
-      details: ["Garantía de 6 meses", "Soporte técnico", "Respaldos automáticos"]
+      description: "Te acompañamos con soporte técnico y mantenimiento para tu empresa",
+      details: ["Garantía de 12 meses", "Soporte técnico", "Respaldos de seguridad"]
     }
   ];
 
@@ -50,7 +50,7 @@ const Process = () => {
             Nuestro <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Proceso</span> de Trabajo
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Una metodología probada que garantiza resultados excepcionales en cada negocio
+            Una metodología probada que garantiza resultados excepcionales para freelancers, negocios y empresas
           </p>
         </motion.div>
 
