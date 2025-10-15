@@ -23,15 +23,15 @@ const Hero = () => {
 
       <motion.div 
         style={{ opacity, scale }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        className="relative z-10 text-center px-6 max-w-5xl mx-auto py-6 md:py-8 lg:py-12"
       >
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="mb-6"
+          className="mb-6 md:mb-8 lg:mb-10"
         >
-          <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm mb-8">
+          <span className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm">
             <Sparkles className="inline w-4 h-4 mr-2" />
             Desarrollo Web Profesional
           </span>
@@ -41,10 +41,10 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="text-6xl md:text-8xl font-bold mb-6"
+          className="text-5xl md:text-6xl lg:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
         >
           Transformamos Ideas en
-          <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent">
+          <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
             Experiencias Digitales
           </span>
         </motion.h1>
@@ -53,7 +53,7 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto"
+          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-3xl mx-auto"
         >
           Desarrollamos sitios web modernos, sistemas personalizados y diseños que impulsan tu negocio al siguiente nivel
         </motion.p>
@@ -62,7 +62,7 @@ const Hero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="flex flex-wrap gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6 md:mb-8 lg:mb-10"
           >
             <motion.button
               onClick={(e) => {
@@ -74,7 +74,7 @@ const Hero = () => {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-full font-semibold text-lg text-white flex items-center gap-2 cursor-pointer"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-full font-semibold text-base sm:text-lg text-white flex items-center gap-2 cursor-pointer"
             >
               Ver Proyectos <ArrowRight className="w-5 h-5" />
             </motion.button>
@@ -88,7 +88,7 @@ const Hero = () => {
               }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-8 py-4 bg-white/10 backdrop-blur-sm rounded-full font-semibold text-lg text-white border border-white/20 cursor-pointer"
+              className="px-6 py-3 sm:px-8 sm:py-4 bg-white/10 backdrop-blur-sm rounded-full font-semibold text-base sm:text-lg text-white border border-white/20 cursor-pointer"
             >
               Contactar
             </motion.button>
