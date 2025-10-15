@@ -86,22 +86,22 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-        </div>
+          </div>
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-8 pt-8 border-t border-gray-800">
-          {socialLinks.map((social, i) => (
-            <motion.a
-              key={i}
-              href={social.href}
-              whileHover={{ y: -5 }}
+            {socialLinks.map((social, i) => (
+              <motion.a
+                key={i}
+                href={social.href}
+                whileHover={{ y: -5 }}
               className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-[#6fcc70]/20 rounded-full border border-gray-600 hover:border-[#6fcc70]/50 transition-all text-gray-300 hover:text-white"
-              aria-label={social.label}
-            >
-              {social.icon}
-            </motion.a>
-          ))}
-        </div>
+                aria-label={social.label}
+              >
+                {social.icon}
+              </motion.a>
+            ))}
+          </div>
 
         {/* Copyright */}
         <div className="text-center text-gray-400 text-sm">

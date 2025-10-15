@@ -10,34 +10,34 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "E-commerce Tech Store",
-      category: "Desarrollo Web",
-      image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?w=800&q=80",
-      tech: ["Next.js", "Tailwind", "Stripe"],
+      title: "Deprotec",
+      category: "Página Web Corporativa",
+      image: "/images/projects/deprotec.webp",
+      tech: ["Laravel", "Livewire", "MySQL"],
       color: "from-[#234f70] to-[#6fcc70]"
     },
     {
       id: 2,
-      title: "Dashboard Analytics",
-      category: "Sistema Web",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
-      tech: ["React", "D3.js", "Node.js"],
+      title: "Panificadora C & V",
+      category: "Sistema Web Empresarial",
+      image: "/images/projects/panificadora-cv.webp",
+      tech: ["Angular", "Spring Boot", "PostgreSQL"],
       color: "from-[#084a6b] to-[#91cf13]"
     },
     {
       id: 3,
-      title: "Portfolio Creativo",
-      category: "Diseño Web",
-      image: "https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80",
-      tech: ["Next.js", "Framer Motion", "GSAP"],
+      title: "Placatic",
+      category: "Landing Page",
+      image: "/images/projects/placatic.webp",
+      tech: ["WordPress", "PHP", "MySQL"],
       color: "from-[#6fcc70] to-[#234f70]"
     },
     {
       id: 4,
-      title: "App Gestión Empresarial",
-      category: "Sistema Web",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80",
-      tech: ["React", "TypeScript", "PostgreSQL"],
+      title: "Lavaquick Express",
+      category: "Sistema Web Empresarial",
+      image: "/images/projects/lavaquick.webp",
+      tech: ["Laravel", "MySQL", "Splade"],
       color: "from-[#91cf13] to-[#084a6b]"
     }
   ];
@@ -84,13 +84,13 @@ const Projects = () => {
                   alt={project.title}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
-                <div className={`absolute inset-0 bg-gradient-to-t ${project.color} opacity-0 group-hover:opacity-80 transition-opacity`} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               
               <div className="absolute inset-0 p-8 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform">
                 {/* Overlay oscuro para mejor legibilidad */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-t-2xl" />
-                <span className="text-sm text-[#6fcc70] mb-2 relative z-10 font-semibold">{project.category}</span>
+                <span className="text-sm text-[#6fcc70] mb-2 relative z-10 font-semibold drop-shadow-2xl" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6)'}}>{project.category}</span>
                 <h3 className="text-3xl font-bold mb-3 text-white relative z-10 drop-shadow-lg">{project.title}</h3>
                 <div className="flex gap-2 mb-4 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
                   {project.tech.map((tech, i) => (
