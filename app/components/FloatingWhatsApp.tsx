@@ -30,11 +30,11 @@ const FloatingWhatsApp = ({ phoneNumber, message = "Hola! Me interesa conocer mÃ
         alt="WhatsApp Icon"
         width={50}
         height={50}
-        className="w-14 h-14"
+        className="w-14 h-14 pointer-events-none"
       />
       
-      {/* Tooltip */}
-      <div className="absolute right-16 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap">
+      {/* Tooltip - Solo visible en hover, no interfiere con clics */}
+      <div className="absolute right-16 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-3 py-2 rounded-lg text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 whitespace-nowrap pointer-events-none">
         Â¡Chatea con nosotros!
         <div className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-gray-900"></div>
       </div>

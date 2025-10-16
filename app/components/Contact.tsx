@@ -76,12 +76,11 @@ const Contact = () => {
       const templateParams = {
         from_name: formData.name,
         from_email: formData.email,
-        message: formData.message,
-        turnstile_token: turnstileToken
+        message: formData.message
       };
 
       // Enviar email usando EmailJS
-      const result = await emailjs.send(
+      await emailjs.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,
