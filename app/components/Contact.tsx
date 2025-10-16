@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+import ReCAPTCHA from 'react-google-recaptcha';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +14,16 @@ const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [error, setError] = useState('');
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+
+  // Configuración de EmailJS - Reemplaza con tus credenciales
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'tu_service_id';
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'tu_template_id';
+  const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'tu_public_key';
+  
+  // Configuración de reCAPTCHA
+  const RECAPTCHA_SITE_KEY = process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY || 'tu_recaptcha_site_key';
 
   const contactInfo = [
     {
@@ -50,18 +62,52 @@ const Contact = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError('');
 
-    // Simular envío del formulario
-    await new Promise(resolve => setTimeout(resolve, 2000));
+    try {
+      // Verificar reCAPTCHA
+      if (!captchaToken) {
+        setError('Por favor, verifica que no eres un robot.');
+        setIsSubmitting(false);
+        return;
+      }
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: '', email: '', message: '' });
-    }, 3000);
+      // Configurar los parámetros del template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        message: formData.message,
+        recaptcha_token: captchaToken
+      };
+
+      // Enviar email usando EmailJS
+      const result = await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      );
+
+      console.log('Email enviado exitosamente:', result);
+      setIsSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', email: '', message: '' });
+        setCaptchaToken(null);
+      }, 3000);
+
+    } catch (error) {
+      console.error('Error al enviar email:', error);
+      setError('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCaptchaChange = (token: string | null) => {
+    setCaptchaToken(token);
   };
 
   if (isSubmitted) {
@@ -119,9 +165,9 @@ const Contact = () => {
             </div>
 
             <div className="grid sm:grid-cols-2 gap-6">
-              {contactInfo.map((item, index) => (
+              {contactInfo.map((item) => (
                 <motion.div
-                  key={index}
+                  key={item.title}
                   whileHover={{ y: -5 }}
                   className="p-6 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all text-center"
                 >
@@ -196,6 +242,20 @@ const Contact = () => {
                   />
                 </div>
               </div>
+
+              {/* reCAPTCHA v3 Invisible */}
+              <ReCAPTCHA
+                sitekey={RECAPTCHA_SITE_KEY}
+                onChange={handleCaptchaChange}
+                size="invisible"
+                badge="bottomright"
+              />
+
+              {error && (
+                <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
+                  {error}
+                </div>
+              )}
 
               <motion.button
                 type="submit"
