@@ -1,13 +1,15 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { ExternalLink, ChevronLeft, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ChevronLeft, ChevronRight, X, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 
 const Projects = () => {
   const [currentCarouselIndex, setCurrentCarouselIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -18,6 +20,7 @@ const Projects = () => {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
 
   const nextCarousel = () => {
     setCurrentCarouselIndex((prev) => {
@@ -41,12 +44,36 @@ const Projects = () => {
     setCurrentCarouselIndex(index);
   };
 
+  const openProjectModal = (projectId: number) => {
+    setSelectedProject(projectId);
+    setCurrentImageIndex(0);
+  };
+
+  const closeProjectModal = () => {
+    setSelectedProject(null);
+    setCurrentImageIndex(0);
+  };
+
+  const nextImage = () => {
+    const project = projects.find(p => p.id === selectedProject);
+    if (project?.images) {
+      setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
+    }
+  };
+
+  const prevImage = () => {
+    const project = projects.find(p => p.id === selectedProject);
+    if (project?.images) {
+      setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
+    }
+  };
+
   const projects = [
     {
       id: 1,
       title: "Deprotec",
       category: "Página Web Corporativa",
-      image: "/images/projects/deprotec.webp",
+      images: ["/images/projects/deprotec.webp", "/images/projects/deprotec2.webp", "/images/projects/deprotec3.webp"],
       tech: ["Laravel", "Livewire", "MySQL"],
       color: "from-[#234f70] to-[#6fcc70]"
     },
@@ -54,7 +81,7 @@ const Projects = () => {
       id: 2,
       title: "Panificadora C & V",
       category: "Sistema Web Empresarial",
-      image: "/images/projects/panificadora-cv.webp",
+      images: ["/images/projects/panificadora-cv.webp"],
       tech: ["Angular", "Spring Boot", "PostgreSQL"],
       color: "from-[#084a6b] to-[#91cf13]"
     },
@@ -62,7 +89,7 @@ const Projects = () => {
       id: 3,
       title: "Placatic",
       category: "Landing Page",
-      image: "/images/projects/placatic.webp",
+      images: ["/images/projects/placatic.webp"],
       tech: ["WordPress", "PHP", "MySQL"],
       color: "from-[#6fcc70] to-[#234f70]"
     },
@@ -70,11 +97,20 @@ const Projects = () => {
       id: 4,
       title: "Lavaquick Express",
       category: "Sistema Web Empresarial",
-      image: "/images/projects/lavaquick.webp",
+      images: ["/images/projects/lavaquick.webp"],
       tech: ["Laravel", "MySQL", "Splade"],
       color: "from-[#91cf13] to-[#084a6b]"
+    },
+    {
+      id: 5,
+      title: "Simepar Sofía",
+      category: "Sistema Web Institucional",
+      images: ["/images/projects/simeparsofia.webp"],
+      tech: ["PHP", "HTML", "JavaScript", "MySQL"],
+      color: "from-[#234f70] to-[#6fcc70]"
     }
   ];
+
 
   return (
     <section id="proyectos" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 xl:pt-48 xl:pb-40 px-4 overflow-hidden">
@@ -103,7 +139,7 @@ const Projects = () => {
         {/* Carrusel Container */}
         <div className="relative">
           {/* Carrusel */}
-          <div className="overflow-hidden rounded-2xl">
+          <div className="overflow-hidden rounded-2xl py-3">
             <motion.div
               className="flex"
               animate={{ 
@@ -118,39 +154,21 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="group relative overflow-hidden rounded-2xl cursor-pointer"
+              className="group relative cursor-pointer"
+              onClick={() => openProjectModal(project.id)}
             >
-                    <div className="aspect-video relative overflow-hidden rounded-2xl"> {/* Mantener 16:9 */}
+              <div className="aspect-video relative overflow-hidden rounded-2xl"> {/* Mantener 16:9 */}
                       <Image 
-                  src={project.image} 
+                  src={project.images[0]} 
                   alt={project.title}
                         fill
                         sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 50vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        className="object-cover"
                         priority={index >= currentCarouselIndex && index < currentCarouselIndex + 2} // Prioridad para las 2 imágenes visibles
                         quality={85}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
               </div>
               
-                    <div className="absolute inset-0 p-4 flex flex-col justify-end translate-y-8 group-hover:translate-y-0 transition-transform">
-                {/* Overlay oscuro para mejor legibilidad */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent rounded-2xl" />
-                <span className="text-sm text-[#6fcc70] mb-2 relative z-10 font-semibold drop-shadow-2xl" style={{textShadow: '2px 2px 4px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.6)'}}>{project.category}</span>
-                      <h3 className="text-2xl font-bold mb-3 text-white relative z-10 drop-shadow-lg">{project.title}</h3>
-                      <div className="flex flex-wrap gap-1 mb-3 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
-                  {project.tech.map((tech) => (
-                          <span key={tech} className="px-2 py-1 bg-white/30 backdrop-blur-sm rounded-full text-xs text-white font-medium border border-white/20">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <div className="flex gap-4 opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
-                  <button className="flex items-center gap-2 text-sm hover:text-[#6fcc70] transition-colors text-white font-semibold drop-shadow-md">
-                    Ver Proyecto <ExternalLink className="w-4 h-4" />
-                  </button>
-                </div>
-              </div>
             </motion.div>
                 </div>
               ))}
@@ -162,7 +180,7 @@ const Projects = () => {
             {/* Botón anterior */}
             <button
               onClick={prevCarousel}
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all border border-white/20"
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all border border-white/20 cursor-pointer"
               aria-label="Proyecto anterior"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -175,9 +193,9 @@ const Projects = () => {
                 length: isMobile ? projects.length : Math.max(1, projects.length - 1) 
               }, (_, index) => (
                 <button
-                  key={index}
+                  key={`carousel-dot-${index}`}
                   onClick={() => goToSlide(index)}
-                  className={`w-3 h-3 rounded-full transition-all ${
+                  className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
                     index === currentCarouselIndex 
                       ? 'bg-[#6fcc70] scale-125' 
                       : 'bg-white/30 hover:bg-white/50'
@@ -190,7 +208,7 @@ const Projects = () => {
             {/* Botón siguiente */}
             <button
               onClick={nextCarousel}
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all border border-white/20"
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all border border-white/20 cursor-pointer"
               aria-label="Siguiente proyecto"
             >
               <span className="text-sm font-medium">Siguiente</span>
@@ -199,6 +217,141 @@ const Projects = () => {
           </div>
         </div>
       </div>
+
+      {/* Modal de Proyecto */}
+      <AnimatePresence>
+        {selectedProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            onClick={closeProjectModal}
+          >
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="relative w-full max-w-6xl max-h-[90vh] bg-black rounded-2xl overflow-hidden"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {(() => {
+                const project = projects.find(p => p.id === selectedProject);
+                if (!project) return null;
+
+                return (
+                  <div className="relative w-full h-full">
+                    {/* Imagen principal - Pantalla completa */}
+                    <div className="relative w-full h-full">
+                      <div className="aspect-video relative overflow-hidden">
+                        {/* Superposición de imágenes - Siempre una visible */}
+                        {project.images.map((image, index) => (
+                          <motion.div
+                            key={`${project.id}-${index}`}
+                            initial={{ opacity: index === currentImageIndex ? 1 : 0 }}
+                            animate={{ opacity: index === currentImageIndex ? 1 : 0 }}
+                            transition={{ duration: 0.6, ease: "easeInOut" }}
+                            className="absolute inset-0"
+                          >
+                            <Image
+                              src={image}
+                              alt={project.title}
+                              fill
+                              className="object-cover"
+                              priority={index === currentImageIndex}
+                            />
+                          </motion.div>
+                        ))}
+                      </div>
+                      
+                      {/* Botón de cerrar flotante */}
+                      <button
+                        onClick={closeProjectModal}
+                        className="absolute top-4 right-4 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                      >
+                        <X className="w-5 h-5" />
+                      </button>
+                      
+                    </div>
+                  </div>
+                );
+              })()}
+              
+              {/* Información del proyecto - Abajo del modal */}
+              {selectedProject && (() => {
+                const project = projects.find(p => p.id === selectedProject);
+                if (!project) return null;
+                
+                return (
+                  <div className="p-6 bg-black/20 backdrop-blur-sm">
+                    <div className="mb-2">
+                      <span className="text-sm text-[#6fcc70] font-semibold bg-black/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                        {project.category}
+                      </span>
+                    </div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white bg-black/50 px-3 py-2 rounded-full backdrop-blur-sm inline-block mb-3">
+                      {project.title}
+                    </h3>
+                    
+                    {/* Tecnologías - Responsive */}
+                    <div className="flex flex-wrap gap-1">
+                      {project.tech.slice(0, isMobile ? 2 : 3).map((tech) => (
+                        <span key={tech} className="text-xs bg-black/50 text-white px-2 py-1 rounded-full backdrop-blur-sm">
+                          {tech}
+                        </span>
+                      ))}
+                      {project.tech.length > (isMobile ? 2 : 3) && (
+                        <span className="text-xs bg-black/50 text-white px-2 py-1 rounded-full backdrop-blur-sm">
+                          +{project.tech.length - (isMobile ? 2 : 3)}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                );
+              })()}
+              
+              {/* Controles de navegación flotantes */}
+              {selectedProject && (() => {
+                const project = projects.find(p => p.id === selectedProject);
+                if (!project || project.images.length <= 1) return null;
+                
+                return (
+                  <>
+                    {/* Botones de navegación flotantes */}
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                    >
+                      <ArrowLeft className="w-5 h-5" />
+                    </button>
+                    
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                    >
+                      <ArrowRight className="w-5 h-5" />
+                    </button>
+                    
+                    {/* Indicadores flotantes */}
+                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                      {project.images.map((_, idx) => (
+                        <button
+                          key={`${project.id}-dot-${idx}`}
+                          onClick={() => setCurrentImageIndex(idx)}
+                          className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
+                            idx === currentImageIndex ? 'bg-white' : 'bg-white/50'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </>
+                );
+              })()}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };
