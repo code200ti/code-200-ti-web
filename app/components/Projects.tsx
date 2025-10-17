@@ -73,11 +73,13 @@ const Projects = () => {
       id: 1,
       title: "Deprotec",
       category: "Página Web Corporativa",
-      images: ["/images/projects/deprotec1.webp",
+      images: [
+        "/images/projects/deprotec/deprotec1.webp",
         "/images/projects/deprotec/deprotec2.webp",
         "/images/projects/deprotec/deprotec3.webp",
         "/images/projects/deprotec/deprotec4.webp",
-        "/images/projects/deprotec/deprotec5.webp"],
+        "/images/projects/deprotec/deprotec5.webp"
+      ],
       tech: ["Laravel", "Livewire", "MySQL"],
       color: "from-[#234f70] to-[#6fcc70]"
     },
@@ -93,9 +95,11 @@ const Projects = () => {
       id: 3,
       title: "Placatic",
       category: "Landing Page",
-      images: ["/images/projects/placatic/placatic1.webp",
+      images: [
+        "/images/projects/placatic/placatic1.webp",
         "/images/projects/placatic/placatic2.webp",
-        "/images/projects/placatic/placatic3.webp"],
+        "/images/projects/placatic/placatic3.webp"
+      ],
       tech: ["WordPress", "PHP", "MySQL"],
       color: "from-[#6fcc70] to-[#234f70]"
     },
@@ -103,7 +107,8 @@ const Projects = () => {
       id: 4,
       title: "Lavaquick Express",
       category: "Sistema Web Empresarial",
-      images: ["/images/projects/lavaquick1.webp",
+      images: [
+        "/images/projects/lavaquick/lavaquick1.webp",
         "/images/projects/lavaquick/lavaquick2.webp",
         "/images/projects/lavaquick/lavaquick3.webp",
         "/images/projects/lavaquick/lavaquick4.webp",
@@ -329,7 +334,7 @@ const Projects = () => {
               })()}
               
               {/* Información del proyecto - Abajo del modal */}
-              {selectedProject && (() => {
+              {selectedProject ? (() => {
                 const project = projects.find(p => p.id === selectedProject);
                 if (!project) return null;
                 
@@ -359,7 +364,7 @@ const Projects = () => {
                     </div>
                   </div>
                 );
-              })()}
+              })() : null}
               
             </motion.div>
           </motion.div>
