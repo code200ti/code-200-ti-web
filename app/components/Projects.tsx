@@ -73,7 +73,11 @@ const Projects = () => {
       id: 1,
       title: "Deprotec",
       category: "Página Web Corporativa",
-      images: ["/images/projects/deprotec.webp", "/images/projects/deprotec2.webp", "/images/projects/deprotec3.webp"],
+      images: ["/images/projects/deprotec1.webp",
+        "/images/projects/deprotec/deprotec2.webp",
+        "/images/projects/deprotec/deprotec3.webp",
+        "/images/projects/deprotec/deprotec4.webp",
+        "/images/projects/deprotec/deprotec5.webp"],
       tech: ["Laravel", "Livewire", "MySQL"],
       color: "from-[#234f70] to-[#6fcc70]"
     },
@@ -89,7 +93,9 @@ const Projects = () => {
       id: 3,
       title: "Placatic",
       category: "Landing Page",
-      images: ["/images/projects/placatic.webp"],
+      images: ["/images/projects/placatic/placatic1.webp",
+        "/images/projects/placatic/placatic2.webp",
+        "/images/projects/placatic/placatic3.webp"],
       tech: ["WordPress", "PHP", "MySQL"],
       color: "from-[#6fcc70] to-[#234f70]"
     },
@@ -97,7 +103,16 @@ const Projects = () => {
       id: 4,
       title: "Lavaquick Express",
       category: "Sistema Web Empresarial",
-      images: ["/images/projects/lavaquick.webp"],
+      images: ["/images/projects/lavaquick1.webp",
+        "/images/projects/lavaquick/lavaquick2.webp",
+        "/images/projects/lavaquick/lavaquick3.webp",
+        "/images/projects/lavaquick/lavaquick4.webp",
+        "/images/projects/lavaquick/lavaquick5.webp",
+        "/images/projects/lavaquick/lavaquick6.webp",
+        "/images/projects/lavaquick/lavaquick7.webp",
+        "/images/projects/lavaquick/lavaquick8.webp",
+        "/images/projects/lavaquick/lavaquick9.webp",
+        "/images/projects/lavaquick/lavaquick10.webp"],
       tech: ["Laravel", "MySQL", "Splade"],
       color: "from-[#91cf13] to-[#084a6b]"
     },
@@ -126,12 +141,12 @@ const Projects = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
             Proyectos <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Destacados</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
+          <p className="text-xl text-gray-300 max-w-2xl mx-auto hidden md:block">
             Soluciones web que han impulsado el crecimiento de empresas
           </p>
         </motion.div>
@@ -274,6 +289,41 @@ const Projects = () => {
                       </button>
                       
                     </div>
+                    
+                    {/* Botones de navegación - Solo si hay más de una imagen */}
+                    {project.images.length > 1 && (
+                      <>
+                        <button
+                          onClick={prevImage}
+                          className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                        >
+                          <ArrowLeft className="w-5 h-5" />
+                        </button>
+                        
+                        <button
+                          onClick={nextImage}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                        >
+                          <ArrowRight className="w-5 h-5" />
+                        </button>
+                      </>
+                    )}
+                    
+                    {/* Indicadores flotantes - Solo si hay más de una imagen */}
+                    {project.images.length > 1 && (
+                      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+                        {project.images.map((_, idx) => (
+                          <button
+                            key={`${project.id}-dot-${idx}`}
+                            onClick={() => setCurrentImageIndex(idx)}
+                            className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
+                              idx === currentImageIndex ? 'bg-white' : 'bg-black/50 hover:bg-black/70'
+                            }`}
+                            aria-label={`Ir a la imagen ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+                    )}
                   </div>
                 );
               })()}
@@ -296,14 +346,14 @@ const Projects = () => {
                     
                     {/* Tecnologías - Responsive */}
                     <div className="flex flex-wrap gap-1">
-                      {project.tech.slice(0, isMobile ? 2 : 3).map((tech) => (
+                      {project.tech.slice(0, 3).map((tech) => (
                         <span key={tech} className="text-xs bg-black/50 text-white px-2 py-1 rounded-full backdrop-blur-sm">
                           {tech}
                         </span>
                       ))}
-                      {project.tech.length > (isMobile ? 2 : 3) && (
+                      {project.tech.length > 3 && (
                         <span className="text-xs bg-black/50 text-white px-2 py-1 rounded-full backdrop-blur-sm">
-                          +{project.tech.length - (isMobile ? 2 : 3)}
+                          +{project.tech.length - 3}
                         </span>
                       )}
                     </div>
@@ -311,43 +361,6 @@ const Projects = () => {
                 );
               })()}
               
-              {/* Controles de navegación flotantes */}
-              {selectedProject && (() => {
-                const project = projects.find(p => p.id === selectedProject);
-                if (!project || project.images.length <= 1) return null;
-                
-                return (
-                  <>
-                    {/* Botones de navegación flotantes */}
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
-                    >
-                      <ArrowLeft className="w-5 h-5" />
-                    </button>
-                    
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
-                    >
-                      <ArrowRight className="w-5 h-5" />
-                    </button>
-                    
-                    {/* Indicadores flotantes */}
-                    <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-20 flex gap-2">
-                      {project.images.map((_, idx) => (
-                        <button
-                          key={`${project.id}-dot-${idx}`}
-                          onClick={() => setCurrentImageIndex(idx)}
-                          className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
-                            idx === currentImageIndex ? 'bg-white' : 'bg-white/50'
-                          }`}
-                        />
-                      ))}
-                    </div>
-                  </>
-                );
-              })()}
             </motion.div>
           </motion.div>
         )}
