@@ -133,13 +133,13 @@ const Contact = () => {
   }
 
   return (
-    <section id="contacto" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-40 lg:pb-32 xl:pt-48 xl:pb-40 px-6 bg-white">
+    <section id="contacto" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
-          className="text-center mb-20"
+          className="text-center mb-12 lg:mb-16"
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
             ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Sitio Web</span> Profesional?
@@ -149,36 +149,36 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12">
+        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false }}
-            className="space-y-8"
+            className="space-y-6 lg:pr-4 xl:pr-6"
           >
             <div>
-              <h3 className="text-3xl font-bold mb-6 text-gray-900">
+              <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">
                 Información de <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Contacto</span>
               </h3>
-              <p className="text-gray-600 mb-8">
+              <p className="text-sm lg:text-base text-gray-600 mb-4 lg:mb-6">
                 Contáctanos para analizar tu proyecto
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-6">
+            <div className="grid sm:grid-cols-2 gap-3 lg:gap-4">
               {contactInfo.map((item) => (
                 <motion.div
                   key={item.title}
                   whileHover={{ y: -5 }}
-                  className="p-6 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all text-center"
+                  className="p-3 lg:p-4 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all text-center"
                 >
-                  <div className="inline-block p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl mb-4 text-white">
+                  <div className="inline-block p-3 lg:p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl mb-3 lg:mb-4 text-white">
                     {item.icon}
                   </div>
-                  <h4 className="text-lg font-bold mb-2 text-gray-900">{item.title}</h4>
-                  <p className="text-[#234f70] font-medium mb-1">{item.info}</p>
-                  <p className="text-sm text-gray-600">{item.description}</p>
+                  <h4 className="text-base lg:text-lg font-bold mb-2 text-gray-900">{item.title}</h4>
+                  <p className="text-sm lg:text-base text-[#234f70] font-medium mb-1">{item.info}</p>
+                  <p className="text-xs lg:text-sm text-gray-600">{item.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -189,22 +189,22 @@ const Contact = () => {
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false }}
-            className="lg:pl-8"
+            className="lg:pl-4 xl:pl-6"
           >
-            <div className="mb-8">
-              <h3 className="text-3xl font-bold mb-4 text-gray-900">
+            <div className="mb-4 lg:mb-6">
+              <h3 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-gray-900">
                 Envíanos un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Mensaje</span>
               </h3>
-              <p className="text-gray-600">
+              <p className="text-xs lg:text-sm text-gray-600">
                 Describe tu proyecto y te contactaremos pronto
               </p>
             </div>
 
             <motion.form
               onSubmit={handleSubmit}
-              className="space-y-6"
+              className="space-y-3 lg:space-y-4"
             >
-              <div className="space-y-4">
+              <div className="space-y-2 lg:space-y-3">
                 <div className="relative">
                   <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
                   <input
@@ -214,7 +214,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Tu nombre o empresa"
                     required
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-500"
+                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-500 text-sm"
                   />
                 </div>
 
@@ -227,7 +227,7 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Tu email"
                     required
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-500"
+                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-500 text-sm"
                   />
                 </div>
 
@@ -239,8 +239,8 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Cuéntanos sobre tu negocio..."
                     required
-                    rows={4}
-                    className="w-full pl-12 pr-4 py-3 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors resize-none text-gray-900 placeholder:text-gray-500"
+                    rows={2}
+                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors resize-none text-gray-900 placeholder:text-gray-500 text-sm"
                   />
                 </div>
               </div>
@@ -256,7 +256,7 @@ const Contact = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-3 bg-gradient-to-r from-[#234f70] to-[#6fcc70] text-white font-semibold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full py-2 lg:py-2.5 bg-gradient-to-r from-[#234f70] to-[#6fcc70] text-white font-semibold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
               >
                 {isSubmitting ? (
                   <>

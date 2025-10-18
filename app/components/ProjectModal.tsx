@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -25,6 +25,33 @@ const ProjectModal = ({
 }: ProjectModalProps) => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Bloquear scroll cuando el modal está abierto
+  useEffect(() => {
+    if (selectedProject) {
+      // Guardar el scroll actual
+      const scrollY = window.scrollY;
+      
+      // Bloquear scroll con múltiples métodos
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+      
+      // También bloquear en el html
+      document.documentElement.style.overflow = 'hidden';
+      
+      // Cleanup: restaurar scroll
+      return () => {
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        document.documentElement.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [selectedProject]);
 
   // Swipe gesture handlers para el modal
   const handleTouchStart = (e: React.TouchEvent) => {
