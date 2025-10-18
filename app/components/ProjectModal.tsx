@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
@@ -23,6 +23,33 @@ const ProjectModal = ({
   onPrevImage, 
   onGoToImage 
 }: ProjectModalProps) => {
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+  const [touchEnd, setTouchEnd] = useState<number | null>(null);
+
+  // Swipe gesture handlers para el modal
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      onNextImage();
+    }
+    if (isRightSwipe) {
+      onPrevImage();
+    }
+  };
   return (
     <AnimatePresence>
       {selectedProject && (
@@ -49,7 +76,12 @@ const ProjectModal = ({
                 <div className="relative w-full h-full">
                   {/* Imagen principal - Pantalla completa */}
                   <div className="relative w-full h-full">
-                    <div className="aspect-video relative overflow-hidden">
+                    <div 
+                      className="aspect-video relative overflow-hidden"
+                      onTouchStart={handleTouchStart}
+                      onTouchMove={handleTouchMove}
+                      onTouchEnd={handleTouchEnd}
+                    >
                       {/* Superposición de imágenes - Siempre una visible */}
                       {project.images.map((image: string, index: number) => (
                         <motion.div

@@ -24,7 +24,16 @@ export const PROJECTS_DATA: Project[] = [
     id: 2,
     category: "Sistema Web Empresarial",
     title: "Panificadora C & V",
-    images: ["/images/projects/panificadora-cv.webp"],
+    images: [
+      "/images/projects/panificadora-cv/panificadora-cv1.webp",
+      "/images/projects/panificadora-cv/panificadora-cv2.webp",
+      "/images/projects/panificadora-cv/panificadora-cv3.webp",
+      "/images/projects/panificadora-cv/panificadora-cv4.webp",
+      "/images/projects/panificadora-cv/panificadora-cv5.webp",
+      "/images/projects/panificadora-cv/panificadora-cv6.webp",
+      "/images/projects/panificadora-cv/panificadora-cv7.webp",
+      "/images/projects/panificadora-cv/panificadora-cv8.webp"
+    ],
     tech: ["Angular", "Spring Boot", "PostgreSQL"]
   },
   {
@@ -51,8 +60,7 @@ export const PROJECTS_DATA: Project[] = [
       "/images/projects/lavaquick/lavaquick6.webp",
       "/images/projects/lavaquick/lavaquick7.webp",
       "/images/projects/lavaquick/lavaquick8.webp",
-      "/images/projects/lavaquick/lavaquick9.webp",
-      "/images/projects/lavaquick/lavaquick10.webp"
+      "/images/projects/lavaquick/lavaquick9.webp"
     ],
     tech: ["Laravel", "MySQL", "Splade"]
   },
