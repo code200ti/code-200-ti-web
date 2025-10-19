@@ -8,7 +8,6 @@ import { Menu, X } from 'lucide-react';
 import { trackNavigationClick, trackContactClick } from '../lib/analytics';
 
 const Navigation = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [currentSection, setCurrentSection] = useState('inicio');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -23,7 +22,6 @@ const Navigation = () => {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      setIsScrolled(scrollY > 50);
 
       // Detectar sección actual
       const sections = ['inicio', 'servicios', 'proceso', 'proyectos', 'contacto'];
