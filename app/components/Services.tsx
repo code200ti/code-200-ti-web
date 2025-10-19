@@ -60,10 +60,12 @@ const Services = () => {
             >
               <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl blur-xl`} />
               <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all">
-                <div className={`inline-block p-4 bg-gradient-to-r ${service.color} rounded-xl mb-6 text-white`}>
-                  {service.icon}
+                <div className="flex justify-center mb-6">
+                  <div className={`inline-block p-4 bg-gradient-to-r ${service.color} rounded-xl text-white`}>
+                    {service.icon}
+                  </div>
                 </div>
-                <h3 className="text-xl md:text-2xl font-bold mb-4 text-gray-900">{service.title}</h3>
+                <h3 className="text-xl font-bold mb-4 text-gray-900">{service.title}</h3>
                 <p className="text-gray-600">{service.description}</p>
               </div>
             </motion.div>

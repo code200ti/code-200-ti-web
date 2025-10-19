@@ -133,13 +133,13 @@ const Contact = () => {
   }
 
   return (
-    <section id="contacto" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white">
+    <section id="contacto" className="relative min-h-screen flex items-center pt-28 pb-28 md:pt-28 md:pb-28 lg:pt-28 lg:pb-28 xl:pt-40 xl:pb-40 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
-          className="text-center mb-12 md:mb-16 lg:mb-20"
+          className="text-center mb-12 md:mb-14 lg:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
             ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Sitio Web</span> Profesional?
@@ -149,7 +149,7 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 xl:gap-10 mb-8">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 xl:gap-10">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
