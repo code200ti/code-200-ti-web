@@ -74,14 +74,14 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
         <Link href="/">
           <motion.div 
-            className="cursor-pointer w-[150px] h-16 flex items-center justify-center"
+            className="cursor-pointer w-[150px] h-18 flex items-center justify-center"
             whileHover={{ scale: 1.05 }}
           >
             <Image 
               src={logoSrc}
               alt="CODE 200 TI Logo"
               width={150}
-              height={64}
+              height={72}
               className="max-w-full max-h-full object-contain"
             />
           </motion.div>

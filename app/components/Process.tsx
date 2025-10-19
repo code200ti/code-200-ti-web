@@ -46,7 +46,7 @@ const Process = () => {
           whileInView={{ opacity: 1, y: 0 }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
             Nuestro <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Proceso</span> de Trabajo
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -55,12 +55,12 @@ const Process = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
-          {processSteps.map((step, index) => (
+          {processSteps.map((step) => (
             <motion.div
-              key={index}
+              key={step.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: processSteps.indexOf(step) * 0.1 }}
               whileHover={{ y: -10 }}
               className="relative group"
             >
@@ -73,8 +73,8 @@ const Process = () => {
                 <p className="text-gray-600 mb-4 text-sm">{step.description}</p>
                 
                 <div className="space-y-2">
-                  {step.details.map((detail, i) => (
-                    <div key={i} className="flex items-center gap-2 text-xs text-gray-500">
+                  {step.details.map((detail) => (
+                    <div key={detail} className="flex items-center gap-2 text-xs text-gray-500">
                       <div className="w-1.5 h-1.5 bg-[#6fcc70] rounded-full" />
                       <span>{detail}</span>
                     </div>

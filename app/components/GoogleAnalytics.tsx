@@ -10,10 +10,10 @@ interface GoogleAnalyticsProps {
 const GoogleAnalytics = ({ measurementId }: GoogleAnalyticsProps) => {
   useEffect(() => {
     // Configurar gtag
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', measurementId, {
+    if (globalThis.window?.gtag) {
+      globalThis.window.gtag('config', measurementId, {
         page_title: document.title,
-        page_location: window.location.href,
+        page_location: globalThis.window.location.href,
       });
     }
   }, [measurementId]);
@@ -29,12 +29,12 @@ const GoogleAnalytics = ({ measurementId }: GoogleAnalyticsProps) => {
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            window.dataLayer = window.dataLayer || [];
+            globalThis.window.dataLayer = globalThis.window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${measurementId}', {
               page_title: document.title,
-              page_location: window.location.href,
+              page_location: globalThis.window.location.href,
             });
           `,
         }}

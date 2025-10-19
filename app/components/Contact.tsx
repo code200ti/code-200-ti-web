@@ -141,7 +141,7 @@ const Contact = () => {
           viewport={{ once: false }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
             ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Sitio Web</span> Profesional?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -158,7 +158,7 @@ const Contact = () => {
             className="space-y-6 lg:pr-4 xl:pr-6 mb-8 lg:mb-0"
           >
             <div>
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 lg:mb-4 text-gray-900">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 text-gray-900">
                 Información de <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Contacto</span>
               </h3>
               <p className="text-sm lg:text-base text-gray-600 mb-4 lg:mb-6">
@@ -192,7 +192,7 @@ const Contact = () => {
             className="lg:pl-4 xl:pl-6"
           >
             <div className="mb-4 lg:mb-6">
-              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 lg:mb-3 text-gray-900">
+              <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 lg:mb-3 text-gray-900">
                 Envíanos un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Mensaje</span>
               </h3>
               <p className="text-xs lg:text-sm text-gray-600">
