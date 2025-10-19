@@ -139,9 +139,9 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
-          className="text-center mb-12 lg:mb-16"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-gray-900">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
             ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Sitio Web</span> Profesional?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -149,16 +149,16 @@ const Contact = () => {
           </p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-6 lg:gap-8 xl:gap-10">
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 xl:gap-10 mb-8">
           {/* Contact Info */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false }}
-            className="space-y-6 lg:pr-4 xl:pr-6"
+            className="space-y-6 lg:pr-4 xl:pr-6 mb-8 lg:mb-0"
           >
             <div>
-              <h3 className="text-xl lg:text-2xl font-bold mb-3 lg:mb-4 text-gray-900">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-3 lg:mb-4 text-gray-900">
                 Información de <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Contacto</span>
               </h3>
               <p className="text-sm lg:text-base text-gray-600 mb-4 lg:mb-6">
@@ -192,7 +192,7 @@ const Contact = () => {
             className="lg:pl-4 xl:pl-6"
           >
             <div className="mb-4 lg:mb-6">
-              <h3 className="text-xl lg:text-2xl font-bold mb-2 lg:mb-3 text-gray-900">
+              <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 lg:mb-3 text-gray-900">
                 Envíanos un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Mensaje</span>
               </h3>
               <p className="text-xs lg:text-sm text-gray-600">

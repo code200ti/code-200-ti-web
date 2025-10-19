@@ -104,7 +104,7 @@ const Projects = () => {
 
 
   return (
-    <section id="proyectos" className="relative min-h-screen flex items-center pt-32 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-40 xl:pt-48 xl:pb-48 px-4 overflow-hidden">
+    <section id="proyectos" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-4 overflow-hidden">
       {/* Fondo oscuro igual que Hero */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
@@ -117,9 +117,9 @@ const Projects = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          className="text-center mb-14"
+          className="text-center mb-12 md:mb-16 lg:mb-20"
         >
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-white">
             Proyectos <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Destacados</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto hidden md:block">
@@ -128,7 +128,7 @@ const Projects = () => {
         </motion.div>
 
         {/* Carrusel Container */}
-        <div className="relative">
+        <div className="relative mb-8">
           {/* Carrusel */}
           <div 
             className="overflow-hidden rounded-2xl py-3"
