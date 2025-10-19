@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Search, Palette, Code, Rocket, CheckCircle, Users } from 'lucide-react';
+import { Search, Palette, Code, Rocket, CheckCircle } from 'lucide-react';
 
 const Process = () => {
   const processSteps = [
