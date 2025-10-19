@@ -44,34 +44,45 @@ const Navigation = () => {
 
   // Secciones oscuras: Hero y Projects
   const isDarkSection = currentSection === 'inicio' || currentSection === 'proyectos';
-  const logoSrc = (isDarkSection || isMenuOpen)
+  const shouldUseDarkLogo = isDarkSection || isMenuOpen;
+  const logoSrc = shouldUseDarkLogo
     ? "/images/logos/isologo-code-200-ti-dark.webp" 
     : "/images/logos/isologo-code-200-ti.webp";
+
+  const getNavStyles = () => {
+    if (isMenuOpen) return 'bg-[#0f172a] border-b border-white/20';
+    if (isDarkSection) return 'backdrop-blur-lg border-b border-white/20';
+    return 'backdrop-blur-lg border-b border-gray-200/50';
+  };
+
+  const getMenuButtonStyles = () => {
+    if (isMenuOpen) return 'text-white hover:bg-white/10 border border-white/20';
+    if (isDarkSection) return 'text-white hover:bg-white/10 border border-white/20';
+    return 'text-gray-900 hover:bg-gray-100 border border-gray-300';
+  };
+
+  const getMenuIcon = () => {
+    return isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />;
+  };
 
   return (
     <motion.nav 
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 w-full z-50 ${isMenuOpen ? 'transition-none' : 'transition-all duration-300'} ${
-        isMenuOpen
-          ? 'bg-[#0f172a] border-b border-white/20'
-          : isDarkSection 
-          ? 'backdrop-blur-lg border-b border-white/20' 
-          : 'backdrop-blur-lg border-b border-gray-200/50'
-      }`}
+      className={`fixed top-0 w-full z-50 ${getNavStyles()}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
         <Link href="/">
           <motion.div 
-            className="cursor-pointer"
+            className="cursor-pointer w-[150px] h-16 flex items-center justify-center"
             whileHover={{ scale: 1.05 }}
           >
             <Image 
               src={logoSrc}
               alt="CODE 200 TI Logo"
               width={150}
-              height={50}
-              className="h-18 w-auto"
+              height={64}
+              className="max-w-full max-h-full object-contain"
             />
           </motion.div>
         </Link>
@@ -101,22 +112,16 @@ const Navigation = () => {
         </div>
         {/* Botón menú móvil */}
         <button
-          className={`lg:hidden p-2 rounded-lg transition-colors relative z-50 ${
-            isMenuOpen
-              ? 'text-white hover:bg-white/10 border border-white/20'
-              : isDarkSection
-              ? 'text-white hover:bg-white/10 border border-white/20'
-              : 'text-gray-900 hover:bg-gray-100 border border-gray-300'
-          }`}
+          className={`lg:hidden p-2 rounded-lg transition-colors relative z-50 ${getMenuButtonStyles()}`}
           aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           onClick={() => setIsMenuOpen(!isMenuOpen)}
         >
-          {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {getMenuIcon()}
         </button>
         <motion.button
           className={`hidden lg:inline-flex px-4 py-2 rounded-full font-semibold transition-all cursor-pointer ${
             isDarkSection 
-              ? 'bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30' 
+              ? 'bg-white/20 backdrop-blur-sm text-white hover:bg-white/30' 
               : 'bg-gradient-to-r from-[#234f70] to-[#6fcc70] text-white'
           }`}
           onClick={(e) => {

@@ -9,12 +9,6 @@
   --primary-green-light: #91cf13;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
 @media (prefers-color-scheme: dark) {
   :root {
@@ -49,4 +43,36 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-green);
+}
+
+/* Fixes for Facebook browser compatibility */
+.hero-text-fallback {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* Ensure text visibility in problematic browsers - only for non-gradient spans */
+h1 span:not(.bg-gradient-to-r) {
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* Fix z-index issues in Facebook browser */
+.hero-buttons {
+  position: relative;
+  z-index: 20 !important;
+}
+
+.hero-scroll-indicator {
+  position: absolute;
+  z-index: 0 !important;
+  pointer-events: auto;
+}
+
+/* Ensure navigation stays on top */
+nav {
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 50 !important;
+  width: 100% !important;
 }
