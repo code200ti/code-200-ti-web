@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { trackWhatsAppClick } from '../lib/analytics';
 
 interface FloatingWhatsAppProps {
   phoneNumber: string;
@@ -11,6 +12,7 @@ interface FloatingWhatsAppProps {
 
 const FloatingWhatsApp = ({ phoneNumber, message = "Hola! Me interesa conocer más sobre tus servicios de desarrollo web." }: FloatingWhatsAppProps) => {
   const handleWhatsAppClick = () => {
+    trackWhatsAppClick();
     const encodedMessage = encodeURIComponent(message);
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
     window.open(whatsappUrl, '_blank');

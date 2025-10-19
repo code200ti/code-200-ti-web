@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { PROJECTS_DATA, Project } from '../lib/constants/projects';
+import { trackProjectView } from '../lib/analytics';
 
 interface ProjectModalProps {
   selectedProject: number | null;
@@ -29,6 +30,12 @@ const ProjectModal = ({
   // Bloquear scroll cuando el modal está abierto
   useEffect(() => {
     if (selectedProject) {
+      // Track project view
+      const project = PROJECTS_DATA.find((p: Project) => p.id === selectedProject);
+      if (project) {
+        trackProjectView(project.title);
+      }
+      
       // Guardar el scroll actual
       const scrollY = window.scrollY;
       
@@ -92,7 +99,7 @@ const ProjectModal = ({
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
             transition={{ duration: 0.3, ease: "easeOut" }}
-            className="relative w-full max-w-6xl max-h-[90vh] bg-black rounded-2xl overflow-hidden"
+            className="relative w-full max-w-6xl max-h-[90vh] bg-black rounded-2xl overflow-hidden shadow-2xl shadow-white/20"
             onClick={(e) => e.stopPropagation()}
           >
             {(() => {
@@ -144,16 +151,16 @@ const ProjectModal = ({
                     <>
                       <button
                         onClick={onPrevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
                       >
-                        <ArrowLeft className="w-5 h-5" />
+                        <ArrowLeft className="w-6 h-6" />
                       </button>
                       
                       <button
                         onClick={onNextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
                       >
-                        <ArrowRight className="w-5 h-5" />
+                        <ArrowRight className="w-6 h-6" />
                       </button>
                     </>
                   )}

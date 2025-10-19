@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
+import { trackNavigationClick, trackContactClick } from '../lib/analytics';
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -83,12 +84,13 @@ const Navigation = () => {
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
+                  trackNavigationClick(item.name.toLowerCase());
                   const target = document.querySelector(item.href);
                   if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                   }
                 }}
-                className={`transition-colors cursor-pointer ${
+                className={`text-lg transition-colors cursor-pointer ${
                   isDarkSection 
                     ? 'text-white hover:text-[#6fcc70]' 
                     : 'text-gray-700 hover:text-[#234f70]'
@@ -121,6 +123,7 @@ const Navigation = () => {
           }`}
           onClick={(e) => {
             e.preventDefault();
+            trackContactClick('cotizar_proyecto_button');
             const target = document.querySelector('#contacto');
             if (target) {
               target.scrollIntoView({ behavior: 'smooth', block: 'start' });
