@@ -5,21 +5,6 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  // Optimización de bundle
-  webpack: (config) => {
-    config.optimization.splitChunks = {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
-        },
-      },
-    };
-    return config;
-  },
-  
   // Configuración de imágenes
   images: {
     formats: ['image/webp', 'image/avif'],
