@@ -130,7 +130,7 @@ const ProjectModal = ({
                             alt={project.title}
                             fill
                             className="object-cover"
-                            priority={index === currentImageIndex}
+                            loading="lazy"
                           />
                         </motion.div>
                       ))}

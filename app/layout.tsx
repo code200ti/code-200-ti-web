@@ -23,6 +23,17 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        {/* CSS crítico inline para eliminar render-blocking */}
+        <style dangerouslySetInnerHTML={{
+          __html: `
+            /* Critical CSS inline */
+            .hero-text-fallback { color: #ffffff !important; }
+            .hero-buttons { position: relative; z-index: 20 !important; }
+            .hero-scroll-indicator { position: absolute; z-index: 0 !important; }
+            nav { position: fixed !important; top: 0 !important; z-index: 50 !important; width: 100% !important; }
+            * { box-sizing: border-box; }
+          `
+        }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

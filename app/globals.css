@@ -76,3 +76,24 @@ nav {
   z-index: 50 !important;
   width: 100% !important;
 }
+
+/* Critical CSS for Hero - inline styles for faster rendering */
+.hero-critical {
+  color: #ffffff !important;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* Optimize animations for better LCP */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize for better tree shaking */
+* {
+  box-sizing: border-box;
+}

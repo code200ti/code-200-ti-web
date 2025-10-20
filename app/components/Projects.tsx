@@ -160,7 +160,7 @@ const Projects = () => {
                         fill
                         sizes="(max-width: 768px) 50vw, (max-width: 1200px) 50vw, 50vw"
                         className="object-cover"
-                        priority={index >= currentCarouselIndex && index < currentCarouselIndex + 2} // Prioridad para las 2 imágenes visibles
+                        loading="lazy"
                         quality={85}
                 />
               </div>

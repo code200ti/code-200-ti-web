@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
-import emailjs from '@emailjs/browser';
+// Dynamic import para reducir bundle size
+const emailjs = () => import('@emailjs/browser');
 import { Turnstile } from '@marsidev/react-turnstile';
 
 const Contact = () => {
@@ -79,8 +80,9 @@ const Contact = () => {
         message: formData.message
       };
 
-      // Enviar email usando EmailJS
-      await emailjs.send(
+      // Enviar email usando EmailJS - Dynamic import
+      const emailjsModule = await emailjs();
+      await emailjsModule.default.send(
         EMAILJS_SERVICE_ID,
         EMAILJS_TEMPLATE_ID,
         templateParams,

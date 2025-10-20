@@ -5,6 +5,9 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
+  // Configuración para navegadores modernos
+  swcMinify: true,
+  
   // Configuración de imágenes
   images: {
     formats: ['image/webp', 'image/avif'],
