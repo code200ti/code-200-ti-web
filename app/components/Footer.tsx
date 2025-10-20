@@ -77,10 +77,10 @@ const Footer = () => {
                   +51 970 842 545
                 </a>
               </li>
-              <li className="text-gray-500">
+              <li className="text-gray-600">
                 Chiclayo, Perú
               </li>
-              <li className="text-gray-500 text-xs">
+              <li className="text-gray-600 text-xs">
                 Servicio remoto global
               </li>
             </ul>
@@ -105,7 +105,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center text-gray-400 text-sm">
           <p>© 2025 CODE 200 TI. Todos los derechos reservados.</p>
-          <p className="mt-2 text-gray-500">Creando experiencias digitales increíbles.</p>
+          <p className="mt-2 text-gray-600">Creando experiencias digitales increíbles.</p>
         </div>
       </div>
     </footer>

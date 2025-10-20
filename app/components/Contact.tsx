@@ -208,7 +208,7 @@ const Contact = () => {
             >
               <div className="space-y-2 lg:space-y-3">
                 <div className="relative">
-                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <User className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
                   <input
                     type="text"
                     name="name"
@@ -216,12 +216,12 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Tu nombre o empresa"
                     required
-                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-500 text-sm"
+                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-600 text-sm"
                   />
                 </div>
 
                 <div className="relative">
-                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+                  <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-600" />
                   <input
                     type="email"
                     name="email"
@@ -229,12 +229,12 @@ const Contact = () => {
                     onChange={handleChange}
                     placeholder="Tu email"
                     required
-                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-500 text-sm"
+                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors text-gray-900 placeholder:text-gray-600 text-sm"
                   />
                 </div>
 
                 <div className="relative">
-                  <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-500" />
+                  <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-gray-600" />
                   <textarea
                     name="message"
                     value={formData.message}
@@ -242,7 +242,7 @@ const Contact = () => {
                     placeholder="Cuéntanos sobre tu negocio..."
                     required
                     rows={2}
-                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors resize-none text-gray-900 placeholder:text-gray-500 text-sm"
+                    className="w-full pl-12 pr-4 py-2 lg:py-2.5 bg-gray-50 rounded-xl border border-gray-200 focus:border-[#234f70] focus:outline-none transition-colors resize-none text-gray-900 placeholder:text-gray-600 text-sm"
                   />
                 </div>
               </div>
