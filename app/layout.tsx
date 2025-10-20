@@ -31,6 +31,21 @@ export default function RootLayout({
             .hero-scroll-indicator { position: absolute; z-index: 0 !important; }
             nav { position: fixed !important; top: 0 !important; z-index: 50 !important; width: 100% !important; }
             * { box-sizing: border-box; }
+            
+            /* Desactivar solo animaciones de Framer Motion en móvil */
+            @media (max-width: 767px) {
+              [data-framer-motion] { 
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                transform: none !important;
+                opacity: 1 !important;
+              }
+              .hero-text-fallback { 
+                color: #ffffff !important; 
+                -webkit-text-fill-color: #ffffff;
+              }
+            }
           `
         }} />
         <script

@@ -1,24 +1,13 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 
 const Hero = () => {
-  const [isMobile, setIsMobile] = useState(false);
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
-
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-20">
@@ -47,26 +36,17 @@ const Hero = () => {
           Desarrollo Web Profesional
         </motion.span>
 
-        {isMobile ? (
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight">
-            <span className="text-white block hero-text-fallback" style={{ color: '#ffffff' }}>Transformamos Ideas en</span>
-            <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
-              Experiencias Digitales
-            </span>
-          </h1>
-        ) : (
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
-          >
-            <span className="text-white block hero-text-fallback" style={{ color: '#ffffff' }}>Transformamos Ideas en</span>
-            <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
-              Experiencias Digitales
-            </span>
-          </motion.h1>
-        )}
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
+        >
+          <span className="text-white block hero-text-fallback" style={{ color: '#ffffff' }}>Transformamos Ideas en</span>
+          <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
+            Experiencias Digitales
+          </span>
+        </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
