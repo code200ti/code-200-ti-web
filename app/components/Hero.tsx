@@ -39,7 +39,7 @@ const Hero = () => {
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0 }}
+          transition={{ duration: 0.3, delay: 0 }}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
         >
           <span className="text-white block hero-text-fallback" style={{ color: '#ffffff' }}>Transformamos Ideas en</span>

@@ -8,6 +8,21 @@ const nextConfig: NextConfig = {
   // Configuración para navegadores modernos
   swcMinify: true,
   
+  // Optimización de bundle
+  webpack: (config) => {
+    config.optimization.splitChunks = {
+      chunks: 'all',
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    };
+    return config;
+  },
+  
   // Configuración de imágenes
   images: {
     formats: ['image/webp', 'image/avif'],
