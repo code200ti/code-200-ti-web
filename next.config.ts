@@ -5,9 +5,6 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
-  // Configuración para navegadores modernos
-  swcMinify: true,
-  
   // Optimización de bundle
   webpack: (config) => {
     config.optimization.splitChunks = {
