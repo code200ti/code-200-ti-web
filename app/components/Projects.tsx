@@ -165,10 +165,10 @@ const Projects = () => {
                   src={project.images[0]} 
                   alt={project.title}
                         fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
+                        sizes="(max-width: 768px) 100vw, 640px"
                         className="object-cover"
                         loading="lazy"
-                        quality={100}
+                        quality={75}
                 />
               </div>
               
