@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
 // Dynamic import para reducir bundle size
@@ -8,6 +8,18 @@ const emailjs = () => import('@emailjs/browser');
 import { Turnstile } from '@marsidev/react-turnstile';
 
 const Contact = () => {
+  // Prefetch Cloudflare solo cuando se carga Contact
+  useEffect(() => {
+    const link = document.createElement('link');
+    link.rel = 'dns-prefetch';
+    link.href = '//challenges.cloudflare.com';
+    document.head.appendChild(link);
+    
+    return () => {
+      document.head.removeChild(link);
+    };
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
