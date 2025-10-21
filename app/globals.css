@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* ========================================
+   VARIABLES CSS
+======================================== */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -9,12 +12,18 @@
   --primary-green-light: #91cf13;
 }
 
-
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+/* ========================================
+   RESET Y BASE
+======================================== */
+* {
+  box-sizing: border-box;
 }
 
 html, body {
@@ -27,7 +36,9 @@ body {
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }
 
-/* Custom scrollbar */
+/* ========================================
+   SCROLLBAR PERSONALIZADO
+======================================== */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -45,19 +56,19 @@ body {
   background: var(--primary-green);
 }
 
-/* Fixes for Facebook browser compatibility */
+/* ========================================
+   HERO SECTION - COMPATIBILIDAD
+======================================== */
 .hero-text-fallback {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff;
 }
 
-/* Ensure text visibility in problematic browsers - only for non-gradient spans */
 h1 span:not(.bg-gradient-to-r) {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff;
 }
 
-/* Fix z-index issues in Facebook browser */
 .hero-buttons {
   position: relative;
   z-index: 20 !important;
@@ -69,7 +80,15 @@ h1 span:not(.bg-gradient-to-r) {
   pointer-events: auto;
 }
 
-/* Ensure navigation stays on top */
+.hero-critical {
+  color: #ffffff !important;
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+/* ========================================
+   NAVEGACIÓN
+======================================== */
 nav {
   position: fixed !important;
   top: 0 !important;
@@ -77,14 +96,10 @@ nav {
   width: 100% !important;
 }
 
-/* Critical CSS for Hero - inline styles for faster rendering */
-.hero-critical {
-  color: #ffffff !important;
-  font-weight: 700;
-  line-height: 1.1;
-}
-
-/* Optimize animations for better LCP */
+/* ========================================
+   OPTIMIZACIONES DE RENDIMIENTO
+======================================== */
+/* Reducir animaciones para usuarios que lo prefieren */
 @media (prefers-reduced-motion: reduce) {
   * {
     animation-duration: 0.01ms !important;
@@ -93,7 +108,13 @@ nav {
   }
 }
 
-/* Optimize for better tree shaking */
-* {
-  box-sizing: border-box;
+/* Desactivar animaciones de Framer Motion en móvil */
+@media (max-width: 767px) {
+  [data-framer-motion] { 
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
 }

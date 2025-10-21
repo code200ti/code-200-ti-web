@@ -29,28 +29,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//challenges.cloudflare.com" />
         
-        {/* CSS crítico mínimo para LCP */}
-        <style dangerouslySetInnerHTML={{
-          __html: `
-            /* Solo CSS crítico para LCP */
-            .hero-text-fallback { color: #ffffff !important; }
-            * { box-sizing: border-box; }
-            
-            /* Optimizar Framer Motion para reducir reprocesamiento */
-            [data-framer-motion] {
-              will-change: transform;
-              transform: translateZ(0);
-            }
-            
-            /* Reducir repaints en móvil */
-            @media (max-width: 767px) {
-              [data-framer-motion] {
-                will-change: auto;
-                transform: none !important;
-              }
-            }
-          `
-        }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
