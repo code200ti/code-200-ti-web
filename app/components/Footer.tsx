@@ -43,8 +43,8 @@ const Footer = () => {
           <div className="text-center md:text-left">
             <h3 className="text-lg font-semibold mb-4 text-white">Navegación</h3>
             <ul className="space-y-2">
-              {quickLinks.map((link, index) => (
-                <li key={index}>
+              {quickLinks.map((link) => (
+                <li key={link.name}>
                   <a
                     href={link.href}
                     onClick={(e) => {
@@ -77,10 +77,10 @@ const Footer = () => {
                   +51 970 842 545
                 </a>
               </li>
-              <li className="text-gray-600">
+              <li className="text-gray-400">
                 Chiclayo, Perú
               </li>
-              <li className="text-gray-600 text-xs">
+              <li className="text-gray-400">
                 Servicio remoto global
               </li>
             </ul>
@@ -89,9 +89,9 @@ const Footer = () => {
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-8 pt-8 border-t border-gray-800">
-            {socialLinks.map((social, i) => (
+            {socialLinks.map((social) => (
               <motion.a
-                key={i}
+                key={social.label}
                 href={social.href}
                 whileHover={{ y: -5 }}
               className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-[#6fcc70]/20 rounded-full border border-gray-600 hover:border-[#6fcc70]/50 transition-all text-gray-300 hover:text-white"
@@ -105,7 +105,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="text-center text-gray-400 text-sm">
           <p>© 2025 CODE 200 TI. Todos los derechos reservados.</p>
-          <p className="mt-2 text-gray-600">Creando experiencias digitales increíbles.</p>
+          <p className="mt-2 text-gray-400">Creando experiencias digitales increíbles.</p>
         </div>
       </div>
     </footer>

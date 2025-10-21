@@ -8,11 +8,15 @@ export { metadata } from "./lib/seo/metadata";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: 'swap',
+  preload: true,
 });
 
 export default function RootLayout({
@@ -23,6 +27,12 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
+        {/* Preconnect para mejor rendimiento */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link rel="dns-prefetch" href="//www.google-analytics.com" />
+        <link rel="dns-prefetch" href="//challenges.cloudflare.com" />
+        
         {/* CSS crítico inline para eliminar render-blocking */}
         <style dangerouslySetInnerHTML={{
           __html: `
