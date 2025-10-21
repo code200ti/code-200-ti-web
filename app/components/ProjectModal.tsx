@@ -127,10 +127,12 @@ const ProjectModal = ({
                         >
                           <Image
                             src={image}
-                            alt={project.title}
+                            alt={`${project.title} - Imagen ${index + 1}`}
                             fill
+                            sizes="100vw"
                             className="object-cover"
-                            priority={index === currentImageIndex}
+                            priority={index === currentImageIndex && index === 0}
+                            quality={100}
                           />
                         </motion.div>
                       ))}
