@@ -23,35 +23,34 @@ const Hero = () => {
 
       <motion.div 
         style={{ opacity, scale }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto py-6 md:py-8 lg:py-12"
+        className="relative z-10 text-center px-6 max-w-5xl mx-auto py-6 md:py-8 lg:py-12 hero-critical"
       >
         <motion.span
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm text-white mb-6 md:mb-8 lg:mb-10" 
-          style={{ color: '#ffffff' }}
+          transition={{ duration: 0.5, delay: 0.05 }}
+          className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm text-white mb-6 md:mb-8 lg:mb-10"
         >
           <Sparkles className="inline w-4 h-4 mr-2" />
           Desarrollo Web Profesional
         </motion.span>
 
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
         >
-          <span className="text-white block hero-text-fallback" style={{ color: '#ffffff' }}>Transformamos Ideas en</span>
+          <span className="text-white block hero-text-fallback">Transformamos Ideas en</span>
           <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
             Experiencias Digitales
           </span>
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
           className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-3xl mx-auto"
         >
           Desarrollamos sitios web modernos, sistemas personalizados y diseños que impulsan tu negocio al siguiente nivel

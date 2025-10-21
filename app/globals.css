@@ -63,6 +63,11 @@ body {
   background-image: radial-gradient(circle at 1px 1px, rgba(35,79,112,0.3) 1px, transparent 0);
   background-size: 50px 50px;
 }
+
+/* Optimización LCP - Hero crítico */
+.hero-critical {
+  will-change: auto;
+}
 .hero-text-fallback {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff;
@@ -82,12 +87,6 @@ h1 span:not(.bg-gradient-to-r) {
   position: absolute;
   z-index: 0 !important;
   pointer-events: auto;
-}
-
-.hero-critical {
-  color: #ffffff !important;
-  font-weight: 700;
-  line-height: 1.1;
 }
 
 /* ========================================

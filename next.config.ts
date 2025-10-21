@@ -5,6 +5,17 @@ const nextConfig: NextConfig = {
   compress: true,
   poweredByHeader: false,
   
+  // Optimizaciones de rendimiento
+  experimental: {
+    optimizeCss: true,
+    optimizePackageImports: ['framer-motion', 'lucide-react'],
+  },
+  
+  // Optimización de CSS
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
+  
   // Configuración de imágenes
   images: {
     formats: ['image/webp', 'image/avif'],

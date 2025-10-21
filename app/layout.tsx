@@ -29,6 +29,14 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//challenges.cloudflare.com" />
         
+        {/* Preload crítico para LCP */}
+        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" />
+        <link rel="preload" href="/images/logos/imagotipo-code-200-ti.webp" as="image" />
+        
+        {/* Preconnect para fuentes */}
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
