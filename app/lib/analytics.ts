@@ -3,8 +3,8 @@ export const GA_MEASUREMENT_ID = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''
 
 // Event tracking functions
 export const trackEvent = (action: string, category: string, label?: string, value?: number) => {
-  if (typeof window !== 'undefined' && window.gtag && GA_MEASUREMENT_ID) {
-    window.gtag('event', action, {
+  if (globalThis.window?.gtag && GA_MEASUREMENT_ID) {
+    globalThis.window.gtag('event', action, {
       event_category: category,
       event_label: label,
       value: value,
