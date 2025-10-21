@@ -36,8 +36,10 @@ const Services = () => {
     <section id="servicios" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
@@ -52,14 +54,19 @@ const Services = () => {
           {services.map((service) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: services.indexOf(service) * 0.1 }}
-              whileHover={{ y: -10 }}
+              transition={{ 
+                duration: 0.3, 
+                delay: services.indexOf(service) * 0.05,
+                ease: "easeOut"
+              }}
+              viewport={{ once: false, margin: "-50px" }}
+              whileHover={{ y: -5 }}
               className="relative group"
             >
-              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl blur-xl`} />
-              <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all">
+              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-xl`} />
+              <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200">
                 <div className="flex justify-center mb-6">
                   <div className={`inline-block p-4 bg-gradient-to-r ${service.color} rounded-xl text-white`}>
                     {service.icon}

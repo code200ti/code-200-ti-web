@@ -98,7 +98,7 @@ const ProjectModal = ({
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
             exit={{ scale: 0.9, opacity: 0, y: 20 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
             className="relative w-full max-w-6xl max-h-[90vh] bg-black rounded-2xl overflow-hidden shadow-2xl shadow-white/20"
             onClick={(e) => e.stopPropagation()}
           >
@@ -122,7 +122,7 @@ const ProjectModal = ({
                           key={`${project.id}-${index}`}
                           initial={{ opacity: index === currentImageIndex ? 1 : 0 }}
                           animate={{ opacity: index === currentImageIndex ? 1 : 0 }}
-                          transition={{ duration: 0.6, ease: "easeInOut" }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
                           className="absolute inset-0"
                         >
                           <Image
@@ -139,7 +139,7 @@ const ProjectModal = ({
                     {/* Botón de cerrar flotante */}
                     <button
                       onClick={onClose}
-                      className="absolute top-4 right-4 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                      className="absolute top-4 right-4 z-20 p-2 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all duration-200 cursor-pointer"
                     >
                       <X className="w-5 h-5" />
                     </button>
@@ -151,14 +151,14 @@ const ProjectModal = ({
                     <>
                       <button
                         onClick={onPrevImage}
-                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                        className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all duration-200 cursor-pointer"
                       >
                         <ArrowLeft className="w-6 h-6" />
                       </button>
                       
                       <button
                         onClick={onNextImage}
-                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all cursor-pointer"
+                        className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 bg-black/50 text-white rounded-full hover:bg-black/70 transition-all duration-200 cursor-pointer"
                       >
                         <ArrowRight className="w-6 h-6" />
                       </button>
@@ -172,7 +172,7 @@ const ProjectModal = ({
                         <button
                           key={`${project.id}-dot-${idx}`}
                           onClick={() => onGoToImage(idx)}
-                          className={`w-3 h-3 rounded-full transition-all cursor-pointer ${
+                          className={`w-3 h-3 rounded-full transition-all duration-200 cursor-pointer ${
                             idx === currentImageIndex ? 'bg-white' : 'bg-black/50 hover:bg-black/70'
                           }`}
                           aria-label={`Ir a la imagen ${idx + 1}`}

@@ -133,6 +133,7 @@ const Contact = () => {
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
             className="max-w-md mx-auto text-center p-8 bg-gradient-to-r from-[#6fcc70]/10 to-[#91cf13]/10 rounded-2xl border border-[#6fcc70]/20"
           >
             <CheckCircle className="w-16 h-16 text-[#6fcc70] mx-auto mb-4" />
@@ -150,9 +151,10 @@ const Contact = () => {
     <section id="contacto" className="relative min-h-screen flex items-center pt-28 pb-28 md:pt-28 md:pb-28 lg:pt-28 lg:pb-28 xl:pt-40 xl:pb-40 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="text-center mb-12 md:mb-14 lg:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
@@ -166,9 +168,10 @@ const Contact = () => {
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-8 xl:gap-10">
           {/* Contact Info */}
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
+            initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: false, margin: "-50px" }}
             className="space-y-6 lg:pr-4 xl:pr-6 mb-8 lg:mb-0"
           >
             <div>
@@ -184,8 +187,9 @@ const Contact = () => {
               {contactInfo.map((item) => (
                 <motion.div
                   key={item.title}
-                  whileHover={{ y: -5 }}
-                  className="p-3 lg:p-4 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all text-center"
+                  whileHover={{ y: -3 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="p-3 lg:p-4 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200 text-center"
                 >
                   <div className="inline-block p-3 lg:p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl mb-3 lg:mb-4 text-white">
                     {item.icon}
@@ -200,9 +204,10 @@ const Contact = () => {
 
           {/* Contact Form */}
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
+            initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: false }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            viewport={{ once: false, margin: "-50px" }}
             className="lg:pl-4 xl:pl-6"
           >
             <div className="mb-4 lg:mb-6">
@@ -270,7 +275,8 @@ const Contact = () => {
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full py-2 lg:py-2.5 bg-gradient-to-r from-[#234f70] to-[#6fcc70] text-white font-semibold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm"
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="w-full py-2 lg:py-2.5 bg-gradient-to-r from-[#234f70] to-[#6fcc70] text-white font-semibold rounded-xl flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed text-sm transition-all duration-200"
               >
                 {isSubmitting ? (
                   <>

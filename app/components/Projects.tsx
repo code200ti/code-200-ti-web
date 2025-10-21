@@ -115,8 +115,10 @@ const Projects = () => {
       </div>
       <div className="w-full max-w-none mx-auto relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-white">
@@ -141,15 +143,20 @@ const Projects = () => {
               animate={{ 
                 x: `-${currentCarouselIndex * (isMobile ? 100 : 50)}%` 
               }} // Responsive: 100% en móvil, 50% en desktop
-              transition={{ duration: 0.5, ease: "easeInOut" }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
               {PROJECTS_DATA.map((project: Project, index: number) => (
                 <div key={project.id} className="w-full md:w-1/2 flex-shrink-0 px-1"> {/* Responsive: 1 imagen en móvil, 2 en desktop */}
                   <motion.div
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
+              transition={{ 
+                duration: 0.3, 
+                delay: index * 0.05,
+                ease: "easeOut"
+              }}
+              viewport={{ once: false, margin: "-50px" }}
+              whileHover={{ y: -5 }}
               className="group relative cursor-pointer"
               onClick={() => openProjectModal(project.id)}
             >
@@ -176,7 +183,7 @@ const Projects = () => {
             {/* Botón anterior */}
             <button
               onClick={prevCarousel}
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all border border-white/20 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all duration-200 border border-white/20 cursor-pointer"
               aria-label="Proyecto anterior"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -204,7 +211,7 @@ const Projects = () => {
             {/* Botón siguiente */}
             <button
               onClick={nextCarousel}
-              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all border border-white/20 cursor-pointer"
+              className="flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-white hover:bg-white/20 transition-all duration-200 border border-white/20 cursor-pointer"
               aria-label="Siguiente proyecto"
             >
               <span className="text-sm font-medium">Siguiente</span>

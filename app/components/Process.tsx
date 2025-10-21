@@ -42,8 +42,10 @@ const Process = () => {
     <section id="proceso" className="relative min-h-screen flex items-center pt-28 pb-28 md:pt-28 md:pb-28 lg:pt-28 lg:pb-28 xl:pt-40 xl:pb-40 px-6 bg-gray-100">
       <div className="max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          viewport={{ once: false, margin: "-100px" }}
           className="text-center mb-8 md:mb-10 lg:mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
@@ -58,14 +60,19 @@ const Process = () => {
           {processSteps.map((step) => (
             <motion.div
               key={step.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: processSteps.indexOf(step) * 0.1 }}
-              whileHover={{ y: -10 }}
+              transition={{ 
+                duration: 0.3, 
+                delay: processSteps.indexOf(step) * 0.05,
+                ease: "easeOut"
+              }}
+              viewport={{ once: false, margin: "-50px" }}
+              whileHover={{ y: -5 }}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#234f70] to-[#6fcc70] opacity-0 group-hover:opacity-10 transition-opacity rounded-2xl blur-xl" />
-              <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all h-full">
+              <div className="absolute inset-0 bg-gradient-to-r from-[#234f70] to-[#6fcc70] opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-xl" />
+              <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200 h-full">
                 <div className="flex justify-center mb-6">
                   <div className="inline-block p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl text-white">
                     {step.icon}

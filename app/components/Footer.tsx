@@ -54,7 +54,7 @@ const Footer = () => {
                         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                       }
                     }}
-                    className="text-gray-400 hover:text-[#6fcc70] transition-colors text-sm cursor-pointer"
+                    className="text-gray-400 hover:text-[#6fcc70] transition-colors duration-200 text-sm cursor-pointer"
                   >
                     {link.name}
                   </a>
@@ -68,12 +68,12 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-white">Contacto</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <a href="mailto:code200ti@gmail.com" className="hover:text-[#6fcc70] transition-colors">
+                <a href="mailto:code200ti@gmail.com" className="hover:text-[#6fcc70] transition-colors duration-200">
                   code200ti@gmail.com
                 </a>
               </li>
               <li>
-                <a href="tel:+51970842545" className="hover:text-[#6fcc70] transition-colors">
+                <a href="tel:+51970842545" className="hover:text-[#6fcc70] transition-colors duration-200">
                   +51 970 842 545
                 </a>
               </li>
@@ -93,8 +93,9 @@ const Footer = () => {
               <motion.a
                 key={social.label}
                 href={social.href}
-                whileHover={{ y: -5 }}
-              className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-[#6fcc70]/20 rounded-full border border-gray-600 hover:border-[#6fcc70]/50 transition-all text-gray-300 hover:text-white"
+                whileHover={{ y: -3 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-[#6fcc70]/20 rounded-full border border-gray-600 hover:border-[#6fcc70]/50 transition-all duration-200 text-gray-300 hover:text-white"
                 aria-label={social.label}
               >
                 {social.icon}
