@@ -29,9 +29,8 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         <link rel="dns-prefetch" href="//challenges.cloudflare.com" />
         
-        {/* Preload crítico para LCP */}
-        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" />
-        <link rel="preload" href="/images/logos/imagotipo-code-200-ti.webp" as="image" />
+        {/* Preload crítico para LCP - Solo en móvil */}
+        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" media="(max-width: 768px)" />
         
         {/* Preconnect para fuentes */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
