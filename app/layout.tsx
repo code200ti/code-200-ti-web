@@ -28,10 +28,10 @@ export default function RootLayout({
         {/* DNS prefetch para servicios externos - Solo críticos */}
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         
-        {/* Preload crítico para LCP - Solo en móvil */}
-        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" media="(max-width: 768px)" />
+        {/* Preload crítico para LCP - Solo en móvil y solo si es necesario */}
+        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" media="(max-width: 768px) and (prefers-reduced-motion: no-preference)" />
         
-        {/* Preconnect para fuentes - Solo si se usan */}
+        {/* Preconnect para fuentes - Solo cuando es necesario */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         

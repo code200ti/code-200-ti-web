@@ -16,7 +16,7 @@ const Contact = () => {
     document.head.appendChild(link);
     
     return () => {
-      document.head.removeChild(link);
+      link.remove();
     };
   }, []);
 

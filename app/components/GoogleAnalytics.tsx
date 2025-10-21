@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, lazy, Suspense } from 'react';
+import { useEffect } from 'react';
 import Script from 'next/script';
 
 interface GoogleAnalyticsProps {
@@ -19,7 +19,7 @@ const GoogleAnalytics = ({ measurementId }: GoogleAnalyticsProps) => {
   }, [measurementId]);
 
   return (
-    <Suspense fallback={null}>
+    <>
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
@@ -39,7 +39,7 @@ const GoogleAnalytics = ({ measurementId }: GoogleAnalyticsProps) => {
           `,
         }}
       />
-    </Suspense>
+    </>
   );
 };
 
