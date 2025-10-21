@@ -1,10 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import { useScrollToSection } from '../lib/hooks/useScrollToSection';
-import FloatingElements from './FloatingElements';
+
+// Lazy load FloatingElements - No crítico para LCP
+const FloatingElements = lazy(() => import('./FloatingElements'));
 
 const Hero = () => {
   const { scrollYProgress } = useScroll();
@@ -26,9 +28,9 @@ const Hero = () => {
         className="relative z-10 text-center px-6 max-w-5xl mx-auto py-6 md:py-8 lg:py-12 hero-critical"
       >
         <motion.span
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
+          transition={{ duration: 0.3, delay: 0 }}
           className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm text-white mb-6 md:mb-8 lg:mb-10"
         >
           <Sparkles className="inline w-4 h-4 mr-2" />
@@ -36,9 +38,9 @@ const Hero = () => {
         </motion.span>
 
         <motion.h1
-          initial={{ opacity: 0, y: 5 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2, delay: 0 }}
+          transition={{ duration: 0.4, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
         >
           <span className="text-white block hero-text-fallback">Transformamos Ideas en</span>
@@ -48,18 +50,18 @@ const Hero = () => {
         </motion.h1>
 
         <motion.p
-          initial={{ opacity: 0, y: 5 }}
+          initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.15, delay: 0.05 }}
+          transition={{ duration: 0.3, delay: 0.2 }}
           className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-3xl mx-auto"
         >
           Desarrollamos sitios web modernos, sistemas personalizados y diseños que impulsan tu negocio al siguiente nivel
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
+          transition={{ duration: 0.3, delay: 0.3 }}
           className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-6 md:mb-8 lg:mb-10 hero-buttons"
         >
           <motion.button
@@ -93,14 +95,14 @@ const Hero = () => {
         onClick={() => {
           scrollToSection('#servicios');
         }}
-        initial={{ opacity: 0, y: 30 }}
+        initial={{ opacity: 0, y: 10 }}
         animate={{ 
           opacity: 1, 
-          y: [0, 10, 0]
+          y: [0, 5, 0]
         }}
         transition={{ 
-          opacity: { duration: 1, delay: 0.8 },
-          y: { duration: 2, repeat: Infinity, delay: 0.8 }
+          opacity: { duration: 0.5, delay: 0.3 },
+          y: { duration: 1.5, repeat: Infinity, delay: 0.3 }
         }}
         style={{ opacity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer hover:scale-110 transition-transform hero-scroll-indicator"
@@ -109,8 +111,10 @@ const Hero = () => {
         <ChevronDown className="w-12 h-12 text-[#6fcc70]" />
       </motion.button>
 
-      {/* Floating Elements */}
-      <FloatingElements />
+      {/* Floating Elements - Lazy loaded con fallback */}
+      <Suspense fallback={<div className="absolute inset-0 pointer-events-none" />}>
+        <FloatingElements />
+      </Suspense>
     </section>
   );
 };

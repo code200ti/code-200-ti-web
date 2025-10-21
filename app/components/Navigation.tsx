@@ -67,8 +67,9 @@ const Navigation = () => {
 
   return (
     <motion.nav 
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ y: -20, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className={`fixed top-0 w-full z-50 ${getNavStyles()}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
@@ -157,9 +158,9 @@ const Navigation = () => {
             {navItems.map((item, index) => (
               <motion.a
                 key={item.name}
-                initial={{ x: -20, opacity: 0 }}
+                initial={{ x: -10, opacity: 0 }}
                 animate={{ x: 0, opacity: 1 }}
-                transition={{ duration: 0.3, delay: 0.1 + (index * 0.05) }}
+                transition={{ duration: 0.25, delay: 0.1 + (index * 0.03) }}
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();

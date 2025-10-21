@@ -26,6 +26,7 @@ const FloatingWhatsApp = ({ phoneNumber, message = "Hola! Me interesa conocer mÃ
       whileTap={{ scale: 0.9 }}
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 0.4, delay: 0.8, ease: "easeOut" }}
     >
       <Image 
         src="/images/logos/whatsapp_logo_icon_147205.webp"
