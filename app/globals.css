@@ -59,6 +59,10 @@ body {
 /* ========================================
    HERO SECTION - COMPATIBILIDAD
 ======================================== */
+.hero-dot-pattern {
+  background-image: radial-gradient(circle at 1px 1px, rgba(35,79,112,0.3) 1px, transparent 0);
+  background-size: 50px 50px;
+}
 .hero-text-fallback {
   color: #ffffff !important;
   -webkit-text-fill-color: #ffffff;

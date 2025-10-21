@@ -3,21 +3,21 @@
 import React from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
+import { useScrollToSection } from '../lib/hooks/useScrollToSection';
+import FloatingElements from './FloatingElements';
 
 const Hero = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const { scrollToSection } = useScrollToSection();
 
   return (
     <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-20">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 1px 1px, rgba(35,79,112,0.3) 1px, transparent 0)`,
-          backgroundSize: '50px 50px'
-        }} />
+        <div className="absolute inset-0 hero-dot-pattern" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       </div>
 
@@ -66,10 +66,7 @@ const Hero = () => {
           <motion.button
             onClick={(e) => {
               e.preventDefault();
-              const target = document.querySelector('#proyectos');
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
+              scrollToSection('#proyectos');
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -80,10 +77,7 @@ const Hero = () => {
           <motion.button
             onClick={(e) => {
               e.preventDefault();
-              const target = document.querySelector('#contacto');
-              if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
+              scrollToSection('#contacto');
             }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -98,10 +92,7 @@ const Hero = () => {
       {/* Scroll Indicator */}
       <motion.button
         onClick={() => {
-          const target = document.querySelector('#servicios');
-          if (target) {
-            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          }
+          scrollToSection('#servicios');
         }}
         initial={{ opacity: 0, y: 30 }}
         animate={{ 
@@ -120,38 +111,7 @@ const Hero = () => {
       </motion.button>
 
       {/* Floating Elements */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ 
-          opacity: 0.2,
-          scale: 1,
-          y: [0, -20, 0],
-          rotate: [0, 5, 0]
-        }}
-        transition={{ 
-          opacity: { duration: 0.8, delay: 1 },
-          scale: { duration: 0.8, delay: 1 },
-          y: { duration: 5, repeat: Infinity, delay: 1 },
-          rotate: { duration: 5, repeat: Infinity, delay: 1 }
-        }}
-        className="absolute top-1/4 left-10 w-20 h-20 bg-gradient-to-br from-[#234f70] to-[#6fcc70] rounded-2xl opacity-20 blur-xl"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ 
-          opacity: 0.2,
-          scale: 1,
-          y: [0, 20, 0],
-          rotate: [0, -5, 0]
-        }}
-        transition={{ 
-          opacity: { duration: 0.8, delay: 1.2 },
-          scale: { duration: 0.8, delay: 1.2 },
-          y: { duration: 7, repeat: Infinity, delay: 1.2 },
-          rotate: { duration: 7, repeat: Infinity, delay: 1.2 }
-        }}
-        className="absolute bottom-1/4 right-10 w-32 h-32 bg-gradient-to-br from-[#084a6b] to-[#91cf13] rounded-full opacity-20 blur-xl"
-      />
+      <FloatingElements />
     </section>
   );
 };
