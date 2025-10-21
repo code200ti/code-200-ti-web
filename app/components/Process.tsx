@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Palette, Code, Rocket, Shield } from 'lucide-react';
 

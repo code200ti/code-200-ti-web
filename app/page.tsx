@@ -1,11 +1,14 @@
+import dynamic from 'next/dynamic';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import Process from './components/Process';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-import FloatingWhatsApp from './components/FloatingWhatsApp';
+
+// Lazy load para componentes below-the-fold
+const Services = dynamic(() => import('./components/Services'));
+const Process = dynamic(() => import('./components/Process'));
+const Projects = dynamic(() => import('./components/Projects'));
+const Contact = dynamic(() => import('./components/Contact'));
+const Footer = dynamic(() => import('./components/Footer'));
+const FloatingWhatsApp = dynamic(() => import('./components/FloatingWhatsApp'));
 
 export default function Home() {
   return (

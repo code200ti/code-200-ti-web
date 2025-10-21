@@ -1,6 +1,6 @@
 'use client';
 
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Sparkles, ArrowRight, ChevronDown } from 'lucide-react';
 import { useScrollToSection } from '../lib/hooks/useScrollToSection';

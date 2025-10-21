@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://code200ti.com'),
   title: {
     default: "CODE 200 TI - Desarrollo Web Profesional",
     template: "%s | CODE 200 TI"

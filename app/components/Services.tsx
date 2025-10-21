@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Palette, Rocket, Zap } from 'lucide-react';
 

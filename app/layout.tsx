@@ -1,20 +1,17 @@
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { structuredData } from "./lib/seo/structured-data";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 
 export { metadata } from "./lib/seo/metadata";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+// Configuración optimizada de fuente
+const inter = Inter({
   subsets: ["latin"],
-  display: 'swap',
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-  display: 'swap',
+  display: "swap", // Mejor rendimiento
+  variable: "--font-inter",
+  preload: true, // Precarga para LCP
+  fallback: ["system-ui", "arial"], // Fallback mientras carga
 });
 
 export default function RootLayout({
@@ -25,15 +22,16 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <head>
-        {/* DNS prefetch para servicios externos - Solo críticos */}
+        {/* Preconnect para Google Analytics/Tag Manager */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        
+        {/* DNS prefetch como fallback para navegadores antiguos */}
+        <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         
-        {/* Preload crítico para LCP - Solo en móvil y solo si es necesario */}
-        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" media="(max-width: 768px) and (prefers-reduced-motion: no-preference)" />
-        
-        {/* Preconnect para fuentes - Solo cuando es necesario */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        {/* Preload crítico para LCP - Solo en móvil */}
+        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" media="(max-width: 768px)" />
         
         <script
           type="application/ld+json"
@@ -42,9 +40,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${inter.variable} antialiased`}>
         <GoogleAnalytics measurementId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID || ''} />
         {children}
       </body>
