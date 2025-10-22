@@ -83,6 +83,7 @@ const Navigation = () => {
               alt="CODE 200 TI Logo"
               width={150}
               height={72}
+              priority
               className="max-w-full max-h-full object-contain"
             />
           </motion.div>
