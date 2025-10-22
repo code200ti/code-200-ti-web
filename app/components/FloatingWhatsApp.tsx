@@ -24,8 +24,8 @@ const FloatingWhatsApp = ({ phoneNumber, message = "Hola! Me interesa conocer mÃ
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ 
-        opacity: { duration: 0.4, delay: 0.8, ease: "easeOut" },
-        scale: { duration: 0.4, delay: 0.8, ease: "easeOut" }
+        opacity: { duration: 0.3, delay: 0.4, ease: "easeOut" },
+        scale: { duration: 0.3, delay: 0.4, ease: "easeOut" }
       }}
     >
       <Image 
