@@ -15,7 +15,7 @@ const Hero = () => {
   const { scrollToSection } = useScrollToSection();
 
   return (
-    <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-20">
+    <section id="inicio" className="relative min-h-screen flex items-center justify-center pt-20 pb-20">
       {/* Animated Background */}
       <div className="fixed inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
@@ -105,10 +105,10 @@ const Hero = () => {
           y: { duration: 1.5, repeat: Infinity, delay: 0.3 }
         }}
         style={{ opacity }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer hover:scale-110 transition-transform hero-scroll-indicator"
+        className="absolute bottom-4 sm:bottom-8 left-1/2 -translate-x-1/2 cursor-pointer hover:scale-110 transition-transform hero-scroll-indicator"
         aria-label="Ir a servicios"
       >
-        <ChevronDown className="w-12 h-12 text-[#6fcc70]" />
+        <ChevronDown className="w-8 h-8 sm:w-12 sm:h-12 text-[#6fcc70]" />
       </motion.button>
 
       {/* Floating Elements - Lazy loaded con fallback */}
