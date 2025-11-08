@@ -30,6 +30,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html, body {
   overflow-x: hidden;
 }
@@ -111,6 +115,10 @@ nav {
 ======================================== */
 /* Reducir animaciones para usuarios que lo prefieren */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
   * {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
@@ -127,4 +135,14 @@ nav {
     transform: none !important;
     opacity: 1 !important;
   }
+}
+
+/* ========================================
+   MODAL SCROLL LOCK
+======================================== */
+body.modal-open {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
 }

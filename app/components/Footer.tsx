@@ -77,10 +77,10 @@ const Footer = () => {
                 </a>
               </li>
               <li className="text-gray-400">
-                Chiclayo, Perú
+                Chiclayo, Lambayeque, Perú
               </li>
               <li className="text-gray-400">
-                Servicio remoto global
+                Servicio remoto a todo el Perú
               </li>
             </ul>
           </div>

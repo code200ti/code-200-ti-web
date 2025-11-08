@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, type TouchEvent } from 'react';
+import { useState, useEffect, useCallback, type TouchEvent } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import Image from 'next/image';
@@ -73,33 +73,35 @@ const Projects = () => {
     setCurrentCarouselIndex(index);
   };
 
-  const openProjectModal = (projectId: number) => {
+  const openProjectModal = useCallback((projectId: number) => {
     setSelectedProject(projectId);
-    setCurrentImageIndex(0);
-  };
+    setCurrentImageIndex(0); // Siempre empezar con la primera imagen (la misma del carrusel)
+  }, []);
 
-  const closeProjectModal = () => {
+  const closeProjectModal = useCallback(() => {
     setSelectedProject(null);
     setCurrentImageIndex(0);
-  };
+  }, []);
 
-  const nextImage = () => {
+  const nextImage = useCallback(() => {
+    if (!selectedProject) return;
     const project = PROJECTS_DATA.find((p: Project) => p.id === selectedProject);
     if (project?.images) {
       setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
     }
-  };
+  }, [selectedProject]);
 
-  const prevImage = () => {
+  const prevImage = useCallback(() => {
+    if (!selectedProject) return;
     const project = PROJECTS_DATA.find((p: Project) => p.id === selectedProject);
     if (project?.images) {
       setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
     }
-  };
+  }, [selectedProject]);
 
-  const goToImage = (index: number) => {
+  const goToImage = useCallback((index: number) => {
     setCurrentImageIndex(index);
-  };
+  }, []);
 
 
 
@@ -160,17 +162,22 @@ const Projects = () => {
               className="group relative cursor-pointer"
               onClick={() => openProjectModal(project.id)}
             >
-              <div className="aspect-video relative overflow-hidden rounded-2xl"> {/* Mantener 16:9 */}
-                      <Image 
+              <motion.div 
+                layoutId={`project-image-${project.id}`}
+                className="aspect-video relative overflow-hidden rounded-2xl"
+                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                style={{ willChange: 'transform' }}
+              >
+                <Image 
                   src={project.images[0]} 
                   alt={project.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 640px"
-                        className="object-cover"
-                        loading="lazy"
-                        quality={75}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 640px"
+                  className="object-cover"
+                  loading="lazy"
+                  quality={75}
                 />
-              </div>
+              </motion.div>
               
             </motion.div>
                 </div>

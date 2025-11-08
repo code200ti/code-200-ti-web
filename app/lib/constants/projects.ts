@@ -4,21 +4,21 @@ export interface Project {
   title: string;
   images: string[];
   tech: string[];
+  url?: string;
 }
 
 export const PROJECTS_DATA: Project[] = [
   {
     id: 1,
-    category: "Página Web Corporativa",
-    title: "Deprotec",
+    category: "Landing Page",
+    title: "Eléctrica Electrónica",
     images: [
-      "/images/projects/deprotec/deprotec1.webp",
-      "/images/projects/deprotec/deprotec2.webp",
-      "/images/projects/deprotec/deprotec3.webp",
-      "/images/projects/deprotec/deprotec4.webp",
-      "/images/projects/deprotec/deprotec5.webp"
+      "/images/projects/electrica-electronica/electrica-electronica1.webp",
+      "/images/projects/electrica-electronica/electrica-electronica2.webp",
+      "/images/projects/electrica-electronica/electrica-electronica3.webp"
     ],
-    tech: ["Laravel", "Livewire", "MySQL"]
+    tech: ["Next.js", "React", "TypeScript"],
+    url: "https://electrica-electronica.vercel.app/"
   },
   {
     id: 2,
@@ -66,6 +66,19 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 5,
+    category: "Página Web Corporativa",
+    title: "Deprotec",
+    images: [
+      "/images/projects/deprotec/deprotec1.webp",
+      "/images/projects/deprotec/deprotec2.webp",
+      "/images/projects/deprotec/deprotec3.webp",
+      "/images/projects/deprotec/deprotec4.webp",
+      "/images/projects/deprotec/deprotec5.webp"
+    ],
+    tech: ["Laravel", "Livewire", "MySQL"]
+  },
+  {
+    id: 6,
     category: "Sistema Web Institucional",
     title: "Simepar Sofía",
     images: [

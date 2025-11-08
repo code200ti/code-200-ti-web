@@ -43,19 +43,21 @@ const Contact = () => {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
       info: "code200ti@gmail.com",
-      description: "Escríbenos cuando quieras"
+      description: "Escríbenos cuando quieras",
+      href: "mailto:code200ti@gmail.com"
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Teléfono",
       info: "+51 970 842 545",
-      description: "Lun-Vie 9:00-18:00"
+      description: "Lun-Vie 9:00-18:00",
+      href: "tel:+51970842545"
     },
     {
       icon: <MapPin className="w-6 h-6" />,
       title: "Ubicación",
-      info: "Chiclayo, Perú",
-      description: "Servicio remoto global"
+      info: "Chiclayo, Lambayeque, Perú",
+      description: "Servicio remoto a todo el Perú"
     },
     {
       icon: <Clock className="w-6 h-6" />,
@@ -184,21 +186,59 @@ const Contact = () => {
             </div>
 
             <div className="grid sm:grid-cols-2 gap-3 lg:gap-4">
-              {contactInfo.map((item) => (
-                <motion.div
-                  key={item.title}
-                  whileHover={{ y: -3 }}
-                  transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="p-3 lg:p-4 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200 text-center"
-                >
-                  <div className="inline-block p-3 lg:p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl mb-3 lg:mb-4 text-white">
-                    {item.icon}
-                  </div>
-                  <h4 className="text-base lg:text-lg font-bold mb-2 text-gray-900">{item.title}</h4>
-                  <p className="text-sm lg:text-base text-[#234f70] font-medium mb-1">{item.info}</p>
-                  <p className="text-xs lg:text-sm text-gray-600">{item.description}</p>
-                </motion.div>
-              ))}
+              {contactInfo.map((item) => {
+                // Si tiene href, hacer toda la tarjeta clickeable
+                if (item.href) {
+                  return (
+                    <motion.a
+                      key={item.title}
+                      href={item.href}
+                      whileHover={{ y: -4, scale: 1.015 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2, ease: "easeOut" }}
+                      className="block p-3 lg:p-4 bg-gray-50 rounded-2xl border-2 border-gray-200 hover:border-[#234f70] hover:shadow-lg transition-all duration-200 text-center group cursor-pointer relative overflow-hidden"
+                    >
+                      {/* Efecto de brillo sutil al hacer hover */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-[#234f70]/0 via-[#234f70]/3 to-[#234f70]/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      
+                      <div className="relative z-10">
+                        <div className="inline-block p-3 lg:p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl mb-3 lg:mb-4 text-white group-hover:scale-105 transition-transform duration-200">
+                          {item.icon}
+                        </div>
+                        <h4 className="text-base lg:text-lg font-bold mb-2 text-gray-900 group-hover:text-[#234f70] transition-colors duration-200">
+                          {item.title}
+                        </h4>
+                        <p className="text-sm lg:text-base text-[#234f70] font-semibold mb-1 group-hover:text-[#084a6b] transition-colors duration-200">
+                          {item.info}
+                        </p>
+                        <p className="text-xs lg:text-sm text-gray-600">{item.description}</p>
+                        
+                        {/* Indicador visual de clickeable - más sutil pero presente */}
+                        <div className="mt-2 text-xs text-[#234f70] opacity-0 group-hover:opacity-100 transition-opacity duration-200 font-medium">
+                          {item.title === "Teléfono" ? "Toca para llamar" : "Toca para enviar email"}
+                        </div>
+                      </div>
+                    </motion.a>
+                  );
+                }
+                
+                // Si no tiene href, mantener como tarjeta estática con hover más sutil
+                return (
+                  <motion.div
+                    key={item.title}
+                    whileHover={{ y: -2 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="p-3 lg:p-4 bg-gray-50 rounded-2xl border border-gray-200 hover:border-gray-300 hover:shadow-md transition-all duration-200 text-center"
+                  >
+                    <div className="inline-block p-3 lg:p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl mb-3 lg:mb-4 text-white">
+                      {item.icon}
+                    </div>
+                    <h4 className="text-base lg:text-lg font-bold mb-2 text-gray-900">{item.title}</h4>
+                    <p className="text-sm lg:text-base text-[#234f70] font-medium mb-1">{item.info}</p>
+                    <p className="text-xs lg:text-sm text-gray-600">{item.description}</p>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
 
