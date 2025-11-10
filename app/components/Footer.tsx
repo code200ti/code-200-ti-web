@@ -3,8 +3,10 @@
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail } from 'lucide-react';
 import Image from 'next/image';
+import { useScrollToSection } from '../lib/hooks/useScrollToSection';
 
 const Footer = () => {
+  const { scrollToSection } = useScrollToSection();
   const socialLinks = [
     { icon: <Github />, label: 'GitHub', href: '#' },
     { icon: <Linkedin />, label: 'LinkedIn', href: '#' },
@@ -48,10 +50,7 @@ const Footer = () => {
                     href={link.href}
                     onClick={(e) => {
                       e.preventDefault();
-                      const target = document.querySelector(link.href);
-                      if (target) {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                      }
+                      scrollToSection(link.href);
                     }}
                     className="text-gray-400 hover:text-[#6fcc70] transition-colors duration-200 text-sm cursor-pointer"
                   >

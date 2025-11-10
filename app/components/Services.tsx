@@ -32,7 +32,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="servicios" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white" style={{ contain: 'layout style paint' }}>
+    <section id="servicios" className="relative min-h-dvh flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -62,11 +62,10 @@ const Services = () => {
               }}
               viewport={{ once: false, margin: "-50px" }}
               whileHover={{ y: -5 }}
-              className="relative group"
-              style={{ willChange: 'transform' }}
+              className="relative group h-full"
             >
-              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-sm md:blur-xl`} />
-              <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200">
+              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-xl`} />
+              <div className="relative h-full p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200 flex flex-col">
                 <div className="flex justify-center mb-6">
                   <div className={`inline-block p-4 bg-gradient-to-r ${service.color} rounded-xl text-white`}>
                     {service.icon}

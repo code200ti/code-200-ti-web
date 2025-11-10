@@ -6,6 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Menu, X } from 'lucide-react';
 import { trackNavigationClick, trackContactClick } from '../lib/analytics';
+import { useScrollToSection } from '../lib/hooks/useScrollToSection';
 
 // Items de navegación - constante fuera del componente para evitar re-renders
 const NAV_ITEMS = [
@@ -19,6 +20,7 @@ const NAV_ITEMS = [
 const Navigation = () => {
   const [currentSection, setCurrentSection] = useState('inicio');
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { scrollToSection } = useScrollToSection();
 
   // Detectar sección activa usando Intersection Observer (más eficiente y moderno)
   useEffect(() => {
@@ -160,10 +162,7 @@ const Navigation = () => {
                   onClick={(e) => {
                     e.preventDefault();
                     trackNavigationClick(item.name.toLowerCase());
-                    const target = document.querySelector(item.href);
-                    if (target) {
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    scrollToSection(item.href);
                   }}
                   className={`text-lg font-medium transition-all duration-200 cursor-pointer relative ${textClass}`}
                 >
@@ -199,10 +198,7 @@ const Navigation = () => {
           onClick={(e) => {
             e.preventDefault();
             trackContactClick('cotizar_proyecto_button');
-            const target = document.querySelector('#contacto');
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
+            scrollToSection('#contacto');
           }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -239,10 +235,7 @@ const Navigation = () => {
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    const target = document.querySelector(item.href);
-                    if (target) {
-                      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                    }
+                    scrollToSection(item.href);
                     setIsMenuOpen(false);
                   }}
                   className={`text-2xl font-semibold py-4 border-b-2 transition-colors duration-200 ${
