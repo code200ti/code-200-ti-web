@@ -34,7 +34,7 @@ const Hero = () => {
           className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm text-white mb-6 md:mb-8 lg:mb-10"
         >
           <Sparkles className="inline w-4 h-4 mr-2" />
-          Desarrollo Web Profesional
+          Desarrollo web profesional
         </motion.span>
 
         <motion.h1
@@ -43,9 +43,9 @@ const Hero = () => {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
         >
-          <span className="text-white block hero-text-fallback">Transformamos Ideas en</span>
+          <span className="text-white block hero-text-fallback">Creamos tu presencia digital</span>
           <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
-            Experiencias Digitales
+            desde cero
           </span>
         </motion.h1>
 

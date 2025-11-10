@@ -124,7 +124,7 @@ const Projects = () => {
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-white">
-            Proyectos <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Destacados</span>
+            Proyectos <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">destacados</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto hidden md:block">
             Soluciones web que han impulsado el crecimiento de empresas

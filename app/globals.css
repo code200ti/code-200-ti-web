@@ -126,17 +126,6 @@ nav {
   }
 }
 
-/* Desactivar animaciones de Framer Motion en móvil */
-@media (max-width: 767px) {
-  [data-framer-motion] { 
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    transform: none !important;
-    opacity: 1 !important;
-  }
-}
-
 /* ========================================
    MODAL SCROLL LOCK
 ======================================== */

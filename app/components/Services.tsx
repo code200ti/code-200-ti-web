@@ -32,7 +32,7 @@ const Services = () => {
   ];
 
   return (
-    <section id="servicios" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white">
+    <section id="servicios" className="relative min-h-screen flex items-center pt-32 pb-16 md:pt-32 md:pb-24 lg:pt-32 lg:pb-16 xl:pt-40 xl:pb-20 px-6 bg-white" style={{ contain: 'layout style paint' }}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,7 +42,7 @@ const Services = () => {
           className="text-center mb-12 md:mb-16 lg:mb-20"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
-            Servicios que <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Ofrecemos</span>
+            Servicios que <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">ofrecemos</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Servicios profesionales de desarrollo web para empresas
@@ -63,8 +63,9 @@ const Services = () => {
               viewport={{ once: false, margin: "-50px" }}
               whileHover={{ y: -5 }}
               className="relative group"
+              style={{ willChange: 'transform' }}
             >
-              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-xl`} />
+              <div className={`absolute inset-0 bg-gradient-to-r ${service.color} opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-sm md:blur-xl`} />
               <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200">
                 <div className="flex justify-center mb-6">
                   <div className={`inline-block p-4 bg-gradient-to-r ${service.color} rounded-xl text-white`}>

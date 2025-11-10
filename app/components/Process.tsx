@@ -48,7 +48,7 @@ const Process = () => {
           className="text-center mb-8 md:mb-10 lg:mb-12"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
-            Nuestro <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Proceso</span> de Trabajo
+            Nuestro <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">proceso</span> de trabajo
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Una metodología probada que garantiza resultados excepcionales para freelancers, negocios y empresas
@@ -70,7 +70,7 @@ const Process = () => {
               whileHover={{ y: -5 }}
               className="relative group"
             >
-              <div className="absolute inset-0 bg-gradient-to-r from-[#234f70] to-[#6fcc70] opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-xl" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[#234f70] to-[#6fcc70] opacity-0 group-hover:opacity-10 transition-opacity duration-200 rounded-2xl blur-sm md:blur-xl" />
               <div className="relative p-8 bg-gray-50 rounded-2xl border border-gray-200 hover:border-[#234f70]/50 hover:shadow-lg transition-all duration-200 h-full">
                 <div className="flex justify-center mb-6">
                   <div className="inline-block p-4 bg-gradient-to-r from-[#234f70] to-[#6fcc70] rounded-xl text-white">

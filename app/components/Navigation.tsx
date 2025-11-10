@@ -207,7 +207,7 @@ const Navigation = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Cotizar Proyecto
+          Cotizar proyecto
         </motion.button>
       </div>
       {/* Overlay menú móvil */}

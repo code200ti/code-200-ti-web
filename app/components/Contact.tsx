@@ -139,7 +139,7 @@ const Contact = () => {
             className="max-w-md mx-auto text-center p-8 bg-gradient-to-r from-[#6fcc70]/10 to-[#91cf13]/10 rounded-2xl border border-[#6fcc70]/20"
           >
             <CheckCircle className="w-16 h-16 text-[#6fcc70] mx-auto mb-4" />
-            <h3 className="text-2xl font-bold mb-2 text-gray-900">¡Mensaje Enviado!</h3>
+            <h3 className="text-2xl font-bold mb-2 text-gray-900">¡Mensaje enviado!</h3>
             <p className="text-gray-800">
               Te contactaremos pronto para discutir tu negocio.
             </p>
@@ -160,7 +160,7 @@ const Contact = () => {
           className="text-center mb-12 md:mb-14 lg:mb-16"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 text-gray-900">
-            ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Sitio Web</span> Profesional?
+            ¿Necesitas un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">sitio web</span> profesional?
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
             Desarrollamos sitios web profesionales que impulsan el crecimiento de tu empresa.
@@ -178,7 +178,7 @@ const Contact = () => {
           >
             <div>
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-3 lg:mb-4 text-gray-900">
-                Información de <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Contacto</span>
+                Información de <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">contacto</span>
               </h3>
               <p className="text-sm lg:text-base text-gray-600 mb-4 lg:mb-6">
                 Contáctanos para analizar tu proyecto
@@ -252,7 +252,7 @@ const Contact = () => {
           >
             <div className="mb-4 lg:mb-6">
               <h3 className="text-xl md:text-2xl lg:text-3xl font-bold mb-2 lg:mb-3 text-gray-900">
-                Envíanos un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">Mensaje</span>
+                Envíanos un <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">mensaje</span>
               </h3>
               <p className="text-xs lg:text-sm text-gray-600">
                 Describe tu proyecto y te contactaremos pronto
@@ -326,7 +326,7 @@ const Contact = () => {
                 ) : (
                   <>
                     <Send className="w-5 h-5" />
-                    Enviar Mensaje
+                    Enviar mensaje
                   </>
                 )}
               </motion.button>
