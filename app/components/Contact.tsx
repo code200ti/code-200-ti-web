@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react';
+import { useState, type ChangeEvent, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
 // Dynamic import para reducir bundle size
@@ -8,18 +8,6 @@ const emailjs = () => import('@emailjs/browser');
 import { Turnstile } from '@marsidev/react-turnstile';
 
 const Contact = () => {
-  // Prefetch Cloudflare solo cuando se carga Contact
-  useEffect(() => {
-    const link = document.createElement('link');
-    link.rel = 'dns-prefetch';
-    link.href = '//challenges.cloudflare.com';
-    document.head.appendChild(link);
-    
-    return () => {
-      link.remove();
-    };
-  }, []);
-
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -30,13 +18,13 @@ const Contact = () => {
   const [error, setError] = useState('');
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
 
-  // Configuración de EmailJS - Reemplaza con tus credenciales
-  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || 'tu_service_id';
-  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || 'tu_template_id';
-  const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || 'tu_public_key';
+  // Configuración de EmailJS
+  const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+  const EMAILJS_TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+  const EMAILJS_PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
   
-  // Configuración de Turnstile
-  const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY || 'tu_turnstile_site_key';
+  // Configuración de Turnstile - Solo en producción
+  const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
 
   const contactInfo = [
     {
@@ -80,9 +68,16 @@ const Contact = () => {
     setError('');
 
     try {
-      // Verificar Turnstile
-      if (!turnstileToken) {
+      // Verificar Turnstile solo en producción
+      if (process.env.NODE_ENV === 'production' && !turnstileToken) {
         setError('Por favor, verifica que no eres un robot.');
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Verificar que las credenciales estén configuradas
+      if (!EMAILJS_SERVICE_ID || !EMAILJS_TEMPLATE_ID || !EMAILJS_PUBLIC_KEY) {
+        setError('Error de configuración. Por favor, contacta al administrador.');
         setIsSubmitting(false);
         return;
       }
@@ -331,17 +326,19 @@ const Contact = () => {
                 )}
               </motion.button>
 
-              {/* Cloudflare Turnstile */}
-              <Turnstile
-                siteKey={TURNSTILE_SITE_KEY}
-                onSuccess={handleTurnstileSuccess}
-                onError={handleTurnstileError}
-                onExpire={() => setTurnstileToken(null)}
-                options={{
-                  theme: 'light',
-                  size: 'normal'
-                }}
-              />
+              {/* Cloudflare Turnstile - Solo en producción */}
+              {process.env.NODE_ENV === 'production' && TURNSTILE_SITE_KEY && (
+                <Turnstile
+                  siteKey={TURNSTILE_SITE_KEY}
+                  onSuccess={handleTurnstileSuccess}
+                  onError={handleTurnstileError}
+                  onExpire={() => setTurnstileToken(null)}
+                  options={{
+                    theme: 'light',
+                    size: 'normal'
+                  }}
+                />
+              )}
             </motion.form>
           </motion.div>
         </div>

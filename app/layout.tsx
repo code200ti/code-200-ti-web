@@ -30,10 +30,6 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//www.googletagmanager.com" />
         <link rel="dns-prefetch" href="//www.google-analytics.com" />
         
-        {/* Preload crítico para LCP - Ambas versiones del logo */}
-        <link rel="preload" href="/images/logos/isologo-code-200-ti.webp" as="image" />
-        <link rel="preload" href="/images/logos/isologo-code-200-ti-dark.webp" as="image" />
-        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
