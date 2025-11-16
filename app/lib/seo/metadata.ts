@@ -66,7 +66,7 @@ export const metadata: Metadata = {
         url: '/images/logos/imagotipo-code-200-ti.webp',
         width: 1200,
         height: 630,
-        alt: 'CODE 200 TI - Desarrollo Web Profesional',
+        alt: 'CODE 200 TI - Logo de desarrollo web profesional en Chiclayo, Lambayeque, Perú. Especialistas en sitios web modernos, sistemas personalizados y diseño UI/UX',
       },
     ],
   },
@@ -89,5 +89,20 @@ export const metadata: Metadata = {
   },
   verification: {
     google: 'tu-codigo-de-verificacion-google',
+  },
+  // Meta tags de geolocalización
+  other: {
+    'geo.region': 'PE-LAM',
+    'geo.placename': 'Chiclayo',
+    'geo.position': '-6.7714;-79.8409',
+    'ICBM': '-6.7714, -79.8409',
+    'DC.title': 'CODE 200 TI - Desarrollo Web Profesional en Chiclayo, Lambayeque, Perú',
+    'DC.creator': 'CODE 200 TI',
+    'DC.subject': 'Desarrollo web, Sistemas web, Diseño web, Chiclayo, Lambayeque, Perú',
+    'DC.description': 'Desarrollo web profesional en Chiclayo, Lambayeque, Perú. Servicios de desarrollo de sitios web, sistemas personalizados y diseño UI/UX.',
+    'DC.publisher': 'CODE 200 TI',
+    'DC.contributor': 'CODE 200 TI',
+    'DC.coverage': 'Chiclayo, Lambayeque, Perú',
+    'DC.rights': '© 2025 CODE 200 TI. Todos los derechos reservados.',
   },
 };

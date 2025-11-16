@@ -125,7 +125,7 @@ const Navigation = () => {
           >
             <Image 
               src={logoSrc}
-              alt="CODE 200 TI Logo"
+              alt="CODE 200 TI - Logo de desarrollo web profesional en Chiclayo, Lambayeque, Perú"
               width={150}
               height={72}
               priority

@@ -23,7 +23,7 @@ const Hero = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
       </div>
 
-      <motion.div 
+      <motion.div
         style={{ opacity, scale }}
         className="relative z-10 text-center px-6 max-w-5xl mx-auto py-6 md:py-8 lg:py-12 hero-critical"
       >
@@ -42,10 +42,11 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.1 }}
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
+          itemProp="headline"
         >
-          <span className="text-white block hero-text-fallback">Creamos tu presencia digital</span>
+          <span className="text-white block hero-text-fallback">Diseño Web Profesional</span>
           <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
-            desde cero
+            Desarrollo de Páginas Web
           </span>
         </motion.h1>
 
@@ -54,8 +55,9 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.2 }}
           className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-3xl mx-auto"
+          itemProp="description"
         >
-          Desarrollamos sitios web modernos, sistemas personalizados y diseños que impulsan tu negocio al siguiente nivel
+          Creamos tu sitio web profesional desde cero: diseño moderno, optimización SEO, adaptable a móviles y carga ultrarrápida.
         </motion.p>
 
         <motion.div
@@ -96,11 +98,11 @@ const Hero = () => {
           scrollToSection('#servicios');
         }}
         initial={{ opacity: 0, y: 10 }}
-        animate={{ 
-          opacity: 1, 
+        animate={{
+          opacity: 1,
           y: [0, 5, 0]
         }}
-        transition={{ 
+        transition={{
           opacity: { duration: 0.5, delay: 0.3 },
           y: { duration: 1.5, repeat: Infinity, delay: 0.3 }
         }}

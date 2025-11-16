@@ -87,6 +87,8 @@ export const structuredData = {
     }
   ],
   "sameAs": [
+    "https://www.facebook.com/share/1PJXVJie5L/",
+    "https://linkedin.com/company/code-200-ti",
     "https://wa.me/51970842545"
   ],
   "service": [

@@ -56,14 +56,14 @@ const Process = () => {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {processSteps.map((step) => (
+          {processSteps.map((step, index) => (
             <motion.div
               key={step.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ 
-                duration: 0.3, 
-                delay: processSteps.indexOf(step) * 0.05,
+              transition={{
+                duration: 0.3,
+                delay: index * 0.05,
                 ease: "easeOut"
               }}
               viewport={{ once: false, margin: "-50px" }}

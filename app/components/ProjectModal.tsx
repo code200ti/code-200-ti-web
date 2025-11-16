@@ -180,7 +180,7 @@ const ProjectModal = ({
                         >
                           <Image
                             src={image}
-                            alt={`${project.title} - Imagen ${index + 1}`}
+                            alt={`${project.title} - ${project.category} - Captura de pantalla ${index + 1} del proyecto web desarrollado por CODE 200 TI en Chiclayo, Lambayeque, Perú. Tecnologías: ${project.tech.join(', ')}`}
                             fill
                             sizes="(max-width: 768px) 100vw, 1024px"
                             className={index === 0 ? "object-cover" : "object-contain"}

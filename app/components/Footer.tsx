@@ -1,16 +1,16 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { Facebook, LinkedinIcon, Mail } from 'lucide-react';
 import Image from 'next/image';
 import { useScrollToSection } from '../lib/hooks/useScrollToSection';
 
 const Footer = () => {
   const { scrollToSection } = useScrollToSection();
   const socialLinks = [
-    { icon: <Github />, label: 'GitHub', href: '#' },
-    { icon: <Linkedin />, label: 'LinkedIn', href: '#' },
-    { icon: <Mail />, label: 'Email', href: 'mailto:contacto@code200ti.com' }
+    { icon: <Facebook />, label: 'Facebook', href: 'https://www.facebook.com/share/1PJXVJie5L/' },
+    { icon: <LinkedinIcon />, label: 'LinkedIn', href: 'https://linkedin.com/company/code-200-ti' },
+    { icon: <Mail />, label: 'Email', href: 'mailto:code200ti@gmail.com' }
   ];
 
   const quickLinks = [
@@ -28,9 +28,9 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand Section */}
           <div className="text-center md:text-left">
-            <Image 
-              src="/images/logos/isologo-code-200-ti-dark.webp" 
-              alt="CODE 200 TI Logo"
+            <Image
+              src="/images/logos/isologo-code-200-ti-dark.webp"
+              alt="CODE 200 TI - Logo de empresa de desarrollo web y sistemas personalizados en Chiclayo, Lambayeque, Perú"
               width={150}
               height={150}
               className="w-auto mb-4 mx-auto md:mx-0"
@@ -83,23 +83,23 @@ const Footer = () => {
               </li>
             </ul>
           </div>
-          </div>
+        </div>
 
         {/* Social Links */}
         <div className="flex justify-center gap-6 mb-8 pt-8 border-t border-gray-800">
-            {socialLinks.map((social) => (
-              <motion.a
-                key={social.label}
-                href={social.href}
-                whileHover={{ y: -3 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-[#6fcc70]/20 rounded-full border border-gray-600 hover:border-[#6fcc70]/50 transition-all duration-200 text-gray-300 hover:text-white"
-                aria-label={social.label}
-              >
-                {social.icon}
-              </motion.a>
-            ))}
-          </div>
+          {socialLinks.map((social) => (
+            <motion.a
+              key={social.label}
+              href={social.href}
+              whileHover={{ y: -3 }}
+              transition={{ duration: 0.2, ease: "easeOut" }}
+              className="w-12 h-12 flex items-center justify-center bg-white/10 hover:bg-[#6fcc70]/20 rounded-full border border-gray-600 hover:border-[#6fcc70]/50 transition-all duration-200 text-gray-300 hover:text-white"
+              aria-label={social.label}
+            >
+              {social.icon}
+            </motion.a>
+          ))}
+        </div>
 
         {/* Copyright */}
         <div className="text-center text-gray-400 text-sm">

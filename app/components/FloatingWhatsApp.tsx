@@ -30,7 +30,7 @@ const FloatingWhatsApp = ({ phoneNumber, message = "Hola! Me interesa conocer mÃ
     >
       <Image 
         src="/images/logos/whatsapp_logo_icon_147205.webp"
-        alt="WhatsApp Icon"
+        alt="Contactar por WhatsApp a CODE 200 TI - Desarrollo web en Chiclayo, Lambayeque, PerÃº"
         width={50}
         height={50}
         className="w-14 h-14 pointer-events-none"

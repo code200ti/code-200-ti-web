@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ChangeEvent, type FormEvent } from 'react';
+import { useState, useEffect, type ChangeEvent, type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, User, MessageSquare, Send, CheckCircle } from 'lucide-react';
 // Dynamic import para reducir bundle size
@@ -17,6 +17,39 @@ const Contact = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState('');
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+
+  // Prefetch Cloudflare para mejorar tiempo de carga del Turnstile
+  useEffect(() => {
+    if (process.env.NODE_ENV === 'production') {
+      const link = document.createElement('link');
+      link.rel = 'dns-prefetch';
+      link.href = '//challenges.cloudflare.com';
+      document.head.appendChild(link);
+
+      return () => {
+        link.remove();
+      };
+    }
+  }, []);
+
+  // Cleanup timeout on unmount to prevent race conditions
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+
+    if (isSubmitted) {
+      timeoutId = setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: '', email: '', message: '' });
+        setTurnstileToken(null);
+      }, 3000);
+    }
+
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [isSubmitted]);
 
   // Configuración de EmailJS
   const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
@@ -99,13 +132,6 @@ const Contact = () => {
       );
 
       setIsSubmitted(true);
-      
-      // Reset form after 3 seconds
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({ name: '', email: '', message: '' });
-        setTurnstileToken(null);
-      }, 3000);
 
     } catch {
       setError('Hubo un error al enviar el mensaje. Por favor, inténtalo de nuevo.');

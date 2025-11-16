@@ -170,7 +170,7 @@ const Projects = () => {
               >
                 <Image 
                   src={project.images[0]} 
-                  alt={project.title}
+                  alt={`${project.title} - ${project.category} desarrollado por CODE 200 TI. Proyecto web profesional en Chiclayo, Lambayeque, Perú`}
                   fill
                   sizes="(max-width: 768px) 100vw, 640px"
                   className="object-cover"
