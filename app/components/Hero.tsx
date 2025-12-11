@@ -34,7 +34,7 @@ const Hero = () => {
           className="inline-block px-4 py-2 bg-gradient-to-r from-[#234f70]/20 to-[#6fcc70]/20 rounded-full border border-[#234f70]/30 text-sm text-white mb-6 md:mb-8 lg:mb-10"
         >
           <Sparkles className="inline w-4 h-4 mr-2" />
-          Desarrollo web profesional
+          Soluciones digitales profesionales
         </motion.span>
 
         <motion.h1
@@ -44,9 +44,11 @@ const Hero = () => {
           className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-6 md:mb-8 lg:mb-10 break-words leading-tight"
           itemProp="headline"
         >
-          <span className="text-white block hero-text-fallback">Diseño Web Profesional</span>
+          <span className="text-white block">
+            Desarrollo Web y Software
+          </span>
           <span className="block bg-gradient-to-r from-[#234f70] via-[#6fcc70] to-[#91cf13] bg-clip-text text-transparent py-1">
-            Desarrollo de Páginas Web
+            a la Medida de tu Negocio
           </span>
         </motion.h1>
 
@@ -57,7 +59,10 @@ const Hero = () => {
           className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-3xl mx-auto"
           itemProp="description"
         >
-          Creamos tu sitio web profesional desde cero: diseño moderno, optimización SEO, adaptable a móviles y carga ultrarrápida.
+          Páginas web, sistemas de gestión, inventarios y CRM personalizados.
+          <span className="block mt-2 text-base md:text-lg text-gray-400">
+            Diseño moderno • Optimización SEO • Carga ultrarrápida
+          </span>
         </motion.p>
 
         <motion.div
