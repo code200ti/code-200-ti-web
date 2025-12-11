@@ -11,7 +11,7 @@ const FloatingElements = lazy(() => import('./FloatingElements'));
 const Hero = () => {
   const { scrollYProgress } = useScroll();
   const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.5]);
   const { scrollToSection } = useScrollToSection();
 
   return (
@@ -59,10 +59,7 @@ const Hero = () => {
           className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 md:mb-10 lg:mb-12 max-w-3xl mx-auto"
           itemProp="description"
         >
-          Páginas web, sistemas de gestión, inventarios y CRM personalizados.
-          <span className="block mt-2 text-base md:text-lg text-gray-400">
-            Diseño moderno • Optimización SEO • Carga ultrarrápida
-          </span>
+          Páginas web profesionales, sistemas de gestión (inventarios, proyectos, producción) y catálogos digitales.
         </motion.p>
 
         <motion.div
@@ -102,14 +99,12 @@ const Hero = () => {
         onClick={() => {
           scrollToSection('#servicios');
         }}
-        initial={{ opacity: 0, y: 10 }}
+        initial={{ y: 10 }}
         animate={{
-          opacity: 1,
           y: [0, 5, 0]
         }}
         transition={{
-          opacity: { duration: 0.5, delay: 0.3 },
-          y: { duration: 1.5, repeat: Infinity, delay: 0.3 }
+          y: { duration: 1.5, repeat: Infinity, delay: 0.8 }
         }}
         style={{ opacity }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer hover:scale-110 transition-transform hero-scroll-indicator"
