@@ -15,14 +15,26 @@ const Projects = () => {
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
+  // Fix #1: Resize con debounce para evitar re-renders excesivos
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+
+    // Debounce resize events
+    let timeoutId: NodeJS.Timeout;
+    const handleResize = () => {
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(checkMobile, 150);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      clearTimeout(timeoutId);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Swipe gesture handlers
@@ -37,7 +49,7 @@ const Projects = () => {
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -49,6 +61,14 @@ const Projects = () => {
       prevCarousel();
     }
   };
+
+  // Fix #4: Cleanup touch states cuando el componente se desmonta
+  useEffect(() => {
+    return () => {
+      setTouchStart(null);
+      setTouchEnd(null);
+    };
+  }, []);
 
 
   const nextCarousel = () => {
@@ -69,8 +89,15 @@ const Projects = () => {
     });
   };
 
+  // Fix #3: Validar índice antes de actualizar
   const goToSlide = (index: number) => {
-    setCurrentCarouselIndex(index);
+    const maxIndex = isMobile
+      ? PROJECTS_DATA.length - 1
+      : Math.max(0, PROJECTS_DATA.length - 2);
+
+    if (index >= 0 && index <= maxIndex) {
+      setCurrentCarouselIndex(index);
+    }
   };
 
   const openProjectModal = useCallback((projectId: number) => {
@@ -83,13 +110,14 @@ const Projects = () => {
     setCurrentImageIndex(0);
   }, []);
 
+  // Fix #5: PROJECTS_DATA es constante importada, no necesita estar en deps pero lo marcamos explícitamente
   const nextImage = useCallback(() => {
     if (!selectedProject) return;
     const project = PROJECTS_DATA.find((p: Project) => p.id === selectedProject);
     if (project?.images) {
       setCurrentImageIndex((prev) => (prev + 1) % project.images.length);
     }
-  }, [selectedProject]);
+  }, [selectedProject]); // PROJECTS_DATA es constante
 
   const prevImage = useCallback(() => {
     if (!selectedProject) return;
@@ -97,7 +125,7 @@ const Projects = () => {
     if (project?.images) {
       setCurrentImageIndex((prev) => (prev - 1 + project.images.length) % project.images.length);
     }
-  }, [selectedProject]);
+  }, [selectedProject]); // PROJECTS_DATA es constante
 
   const goToImage = useCallback((index: number) => {
     setCurrentImageIndex(index);
@@ -197,10 +225,12 @@ const Projects = () => {
               <span className="text-sm font-medium">Anterior</span>
             </button>
 
-            {/* Indicadores de puntos */}
+            {/* Indicadores de puntos - Fix #2: Calcular correctamente */}
             <div className="flex gap-2">
-              {Array.from({ 
-                length: isMobile ? PROJECTS_DATA.length : Math.max(1, PROJECTS_DATA.length - 1) 
+              {Array.from({
+                length: isMobile
+                  ? PROJECTS_DATA.length
+                  : Math.max(1, PROJECTS_DATA.length - 1)
               }, (_, index) => (
                 <button
                   key={`carousel-dot-${index}`}

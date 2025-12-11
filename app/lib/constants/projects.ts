@@ -22,7 +22,7 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 2,
-    category: "Sistema Web Empresarial",
+    category: "Sistema ERP (Enterprise Resource Planning)",
     title: "Panificadora C & V",
     images: [
       "/images/projects/panificadora-cv/panificadora-cv1.webp",
@@ -49,7 +49,7 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 4,
-    category: "Sistema Web Empresarial",
+    category: "Sistema de Gestión Documentall",
     title: "Lavaquick Express",
     images: [
       "/images/projects/lavaquick/lavaquick1.webp",
@@ -66,7 +66,7 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 5,
-    category: "Página Web Corporativa",
+    category: "Web Multipage Corporativa",
     title: "Deprotec",
     images: [
       "/images/projects/deprotec/deprotec1.webp",
@@ -79,7 +79,7 @@ export const PROJECTS_DATA: Project[] = [
   },
   {
     id: 6,
-    category: "Sistema Web Institucional",
+    category: "Mesa de Partes Virtual",
     title: "Simepar Sofía",
     images: [
       "/images/projects/simeparsofia/simeparsofia1.webp",

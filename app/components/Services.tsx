@@ -19,8 +19,8 @@ const Services = () => {
     },
     {
       icon: <Rocket className="w-8 h-8" />,
-      title: "Sistemas Web",
-      description: "Aplicaciones web personalizadas para automatizar tu negocio",
+      title: "Sistemas de Gestión",
+      description: "Inventarios, proyectos, producción y catálogos digitales personalizados",
       color: "from-[#084a6b] to-[#234f70]"
     },
     {
@@ -45,7 +45,7 @@ const Services = () => {
             Servicios que <span className="bg-gradient-to-r from-[#234f70] to-[#6fcc70] bg-clip-text text-transparent">ofrecemos</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-            Servicios profesionales de desarrollo web para empresas
+            Soluciones digitales para impulsar tu negocio
           </p>
         </motion.div>
 

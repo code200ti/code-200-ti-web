@@ -26,28 +26,36 @@ const Navigation = () => {
   useEffect(() => {
     const sections = NAV_ITEMS.map(item => item.href.replace('#', ''));
     let observer: IntersectionObserver | null = null;
-    
+
     const observerOptions = {
       root: null,
       rootMargin: '-20% 0px -70% 0px', // Activa cuando la sección está en el 20% superior
       threshold: 0
     };
 
-    // Callback del observer optimizado
+    // Callback del observer optimizado - Fix race condition
     const handleIntersection = (entries: IntersectionObserverEntry[]) => {
-      for (const entry of entries) {
-        if (entry.isIntersecting) {
-          const sectionId = entry.target.id;
-          if (sections.includes(sectionId)) {
-            setCurrentSection((prev) => {
-              // Evita re-render si ya es la sección activa
-              if (prev === sectionId) {
-                return prev;
-              }
-              return sectionId;
-            });
+      // Filtrar solo las que están intersectando
+      const intersectingEntries = entries.filter(e => e.isIntersecting);
+
+      if (intersectingEntries.length === 0) return;
+
+      // Si hay múltiples, tomar la que está más alta en viewport
+      const topMostEntry = intersectingEntries.reduce((prev, current) => {
+        return current.boundingClientRect.top < prev.boundingClientRect.top
+          ? current
+          : prev;
+      });
+
+      const sectionId = topMostEntry.target.id;
+      if (sections.includes(sectionId)) {
+        setCurrentSection((prev) => {
+          // Evita re-render si ya es la sección activa
+          if (prev === sectionId) {
+            return prev;
           }
-        }
+          return sectionId;
+        });
       }
     };
 
@@ -89,6 +97,17 @@ const Navigation = () => {
     };
   }, []);
 
+  // Fix #4: Bloquear scroll cuando el menú móvil está abierto
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isMenuOpen]);
 
   // Secciones oscuras: Hero y Projects
   const isDarkSection = currentSection === 'inicio' || currentSection === 'proyectos';
@@ -105,31 +124,41 @@ const Navigation = () => {
   const menuButtonStyles = (isMenuOpen || isDarkSection)
     ? 'text-white hover:bg-white/10 border border-white/20'
     : 'text-gray-900 hover:bg-gray-100 border border-gray-300';
-  
-  const logoSrc = shouldUseDarkLogo
-    ? "/images/logos/isologo-code-200-ti-dark.webp" 
-    : "/images/logos/isologo-code-200-ti.webp";
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className={`fixed top-0 w-full z-50 ${navStyles}`}
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ${navStyles}`}
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center relative z-50">
         <Link href="/">
-          <motion.div 
-            className="cursor-pointer w-[150px] h-18 flex items-center justify-center"
+          <motion.div
+            className="cursor-pointer w-[150px] h-18 flex items-center justify-center relative"
             whileHover={{ scale: 1.05 }}
           >
-            <Image 
-              src={logoSrc}
+            {/* Logo claro (secciones claras) */}
+            <Image
+              src="/images/logos/isologo-code-200-ti.webp"
               alt="CODE 200 TI - Logo de desarrollo web profesional en Chiclayo, Lambayeque, Perú"
               width={150}
               height={72}
               priority
-              className="max-w-full max-h-full object-contain"
+              className={`max-w-full max-h-full object-contain transition-opacity duration-300 ${
+                shouldUseDarkLogo ? 'opacity-0' : 'opacity-100'
+              }`}
+            />
+            {/* Logo oscuro (secciones oscuras) */}
+            <Image
+              src="/images/logos/isologo-code-200-ti-dark.webp"
+              alt="CODE 200 TI - Logo de desarrollo web profesional en Chiclayo, Lambayeque, Perú"
+              width={150}
+              height={72}
+              priority
+              className={`absolute inset-0 max-w-full max-h-full object-contain transition-opacity duration-300 ${
+                shouldUseDarkLogo ? 'opacity-100' : 'opacity-0'
+              }`}
             />
           </motion.div>
         </Link>

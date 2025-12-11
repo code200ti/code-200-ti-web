@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useLayoutEffect, useEffect, type TouchEvent } from 'react';
+import { useState, useEffect, useRef, type TouchEvent } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import Image from 'next/image';
@@ -27,48 +27,64 @@ const ProjectModal = ({
   const [touchStart, setTouchStart] = useState<number | null>(null);
   const [touchEnd, setTouchEnd] = useState<number | null>(null);
 
-  // Bloquear scroll cuando el modal está abierto - Solución simplificada y robusta
-  useLayoutEffect(() => {
+  // Fix #7: Usar useEffect en vez de useLayoutEffect para evitar SSR warnings
+  // Fix #6: Mejorar bloqueo de scroll para evitar conflictos con Navigation
+  useEffect(() => {
     if (selectedProject) {
       // Track project view
       const project = PROJECTS_DATA.find((p: Project) => p.id === selectedProject);
       if (project) {
         trackProjectView(project.title);
       }
-      
+
       const body = document.body;
       const html = document.documentElement;
-      
-      // Método simplificado: solo overflow hidden (sin position fixed)
-      // Esto evita problemas de restauración de scroll porque el navegador
-      // mantiene automáticamente la posición de scroll
+
+      // Guardar estado original
       const originalBodyOverflow = body.style.overflow;
       const originalHtmlOverflow = html.style.overflow;
       const originalBodyPaddingRight = body.style.paddingRight;
       const originalHtmlPaddingRight = html.style.paddingRight;
-      
+
       // Calcular ancho del scrollbar antes de ocultarlo
       const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-      
+
       // Aplicar bloqueo de scroll
       body.style.overflow = 'hidden';
       html.style.overflow = 'hidden';
-      
+
       // Compensar scrollbar para evitar layout shift
       if (scrollbarWidth > 0) {
         body.style.paddingRight = `${scrollbarWidth}px`;
         html.style.paddingRight = `${scrollbarWidth}px`;
       }
-      
-      // Cleanup: restaurar estilos
+
+      // Cleanup: solo restaurar si el overflow sigue siendo 'hidden'
+      // Esto evita conflictos si otro componente (Navigation) también bloqueó el scroll
       return () => {
-        body.style.overflow = originalBodyOverflow;
-        html.style.overflow = originalHtmlOverflow;
+        // Solo restaurar si nadie más cambió el overflow mientras tanto
+        if (body.style.overflow === 'hidden') {
+          body.style.overflow = originalBodyOverflow;
+        }
+        if (html.style.overflow === 'hidden') {
+          html.style.overflow = originalHtmlOverflow;
+        }
         body.style.paddingRight = originalBodyPaddingRight;
         html.style.paddingRight = originalHtmlPaddingRight;
       };
     }
   }, [selectedProject]);
+
+  // Fix #8: Usar refs para evitar re-registros del keyboard handler
+  const onCloseRef = useRef(onClose);
+  const onPrevImageRef = useRef(onPrevImage);
+  const onNextImageRef = useRef(onNextImage);
+
+  useEffect(() => {
+    onCloseRef.current = onClose;
+    onPrevImageRef.current = onPrevImage;
+    onNextImageRef.current = onNextImage;
+  }, [onClose, onPrevImage, onNextImage]);
 
   // Manejar eventos de teclado globalmente cuando el modal está abierto
   useEffect(() => {
@@ -82,13 +98,13 @@ const ProjectModal = ({
 
       if (e.key === 'Escape') {
         e.preventDefault();
-        onClose();
+        onCloseRef.current();
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        onPrevImage();
+        onPrevImageRef.current();
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
-        onNextImage();
+        onNextImageRef.current();
       }
     };
 
@@ -97,7 +113,7 @@ const ProjectModal = ({
     return () => {
       document.removeEventListener('keydown', handleKeyDown, true);
     };
-  }, [selectedProject, onClose, onPrevImage, onNextImage]);
+  }, [selectedProject]); // Solo depende de selectedProject, no de las funciones
 
   // Swipe gesture handlers para el modal
   const handleTouchStart = (e: TouchEvent) => {
@@ -111,7 +127,7 @@ const ProjectModal = ({
 
   const handleTouchEnd = () => {
     if (!touchStart || !touchEnd) return;
-    
+
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > 50;
     const isRightSwipe = distance < -50;
@@ -123,8 +139,17 @@ const ProjectModal = ({
       onPrevImage();
     }
   };
+
+  // Fix #11: Reset touch states cuando el modal se cierra
+  useEffect(() => {
+    if (!selectedProject) {
+      setTouchStart(null);
+      setTouchEnd(null);
+    }
+  }, [selectedProject]);
+
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {selectedProject && (
         <motion.div
           key={`modal-${selectedProject}`}
@@ -184,8 +209,8 @@ const ProjectModal = ({
                             fill
                             sizes="(max-width: 768px) 100vw, 1024px"
                             className={index === 0 ? "object-cover" : "object-contain"}
-                            priority={index === currentImageIndex && index === 0}
-                            quality={index === 0 ? 90 : 100}
+                            priority={index === currentImageIndex}
+                            quality={index === 0 ? 90 : 85}
                           />
                         </motion.div>
                       ))}
