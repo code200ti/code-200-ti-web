@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next'
+import { SITEMAP_URL } from './lib/constants/urls'
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://code200ti.com/sitemap.xml',
+    sitemap: SITEMAP_URL,
   }
 }

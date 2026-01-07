@@ -1,6 +1,7 @@
 import dynamic from 'next/dynamic';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
+import { PHONE_NUMBER } from './lib/constants/contact';
 
 // Lazy load para componentes below-the-fold
 const Services = dynamic(() => import('./components/Services'));
@@ -21,7 +22,7 @@ export default function Home() {
       <Contact />
       <Footer />
       <FloatingWhatsApp 
-        phoneNumber="51970842545"
+        phoneNumber={PHONE_NUMBER}
         message="Hola! Me interesa conocer más sobre tus servicios de desarrollo web."
       />
     </div>

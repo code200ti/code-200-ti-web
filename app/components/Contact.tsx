@@ -6,6 +6,7 @@ import { Mail, Phone, MapPin, Clock, User, MessageSquare, Send, CheckCircle } fr
 // Dynamic import para reducir bundle size
 const emailjs = () => import('@emailjs/browser');
 import { Turnstile } from '@marsidev/react-turnstile';
+import { PHONE_TEL_LINK, PHONE_NUMBER_FORMATTED, EMAIL_MAILTO_LINK, CONTACT_EMAIL } from '../lib/constants/contact';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -63,16 +64,16 @@ const Contact = () => {
     {
       icon: <Mail className="w-6 h-6" />,
       title: "Email",
-      info: "code200ti@gmail.com",
+      info: CONTACT_EMAIL,
       description: "Escríbenos cuando quieras",
-      href: "mailto:code200ti@gmail.com"
+      href: EMAIL_MAILTO_LINK
     },
     {
       icon: <Phone className="w-6 h-6" />,
       title: "Teléfono",
-      info: "+51 970 842 545",
+      info: PHONE_NUMBER_FORMATTED,
       description: "Lun-Vie 9:00-18:00",
-      href: "tel:+51970842545"
+      href: PHONE_TEL_LINK
     },
     {
       icon: <MapPin className="w-6 h-6" />,

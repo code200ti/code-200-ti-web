@@ -4,13 +4,14 @@ import { motion } from 'framer-motion';
 import { Facebook, LinkedinIcon, Mail } from 'lucide-react';
 import Image from 'next/image';
 import { useScrollToSection } from '../lib/hooks/useScrollToSection';
+import { PHONE_TEL_LINK, PHONE_NUMBER_FORMATTED, EMAIL_MAILTO_LINK, CONTACT_EMAIL, FACEBOOK_URL, LINKEDIN_URL } from '../lib/constants/contact';
 
 const Footer = () => {
   const { scrollToSection } = useScrollToSection();
   const socialLinks = [
-    { icon: <Facebook />, label: 'Facebook', href: 'https://www.facebook.com/share/1PJXVJie5L/' },
-    { icon: <LinkedinIcon />, label: 'LinkedIn', href: 'https://linkedin.com/company/code-200-ti' },
-    { icon: <Mail />, label: 'Email', href: 'mailto:code200ti@gmail.com' }
+    { icon: <Facebook />, label: 'Facebook', href: FACEBOOK_URL },
+    { icon: <LinkedinIcon />, label: 'LinkedIn', href: LINKEDIN_URL },
+    { icon: <Mail />, label: 'Email', href: EMAIL_MAILTO_LINK }
   ];
 
   const quickLinks = [
@@ -66,13 +67,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4 text-white">Contacto</h3>
             <ul className="space-y-2 text-sm text-gray-400">
               <li>
-                <a href="mailto:code200ti@gmail.com" className="hover:text-[#6fcc70] transition-colors duration-200">
-                  code200ti@gmail.com
+                <a href={EMAIL_MAILTO_LINK} className="hover:text-[#6fcc70] transition-colors duration-200">
+                  {CONTACT_EMAIL}
                 </a>
               </li>
               <li>
-                <a href="tel:+51970842545" className="hover:text-[#6fcc70] transition-colors duration-200">
-                  +51 970 842 545
+                <a href={PHONE_TEL_LINK} className="hover:text-[#6fcc70] transition-colors duration-200">
+                  {PHONE_NUMBER_FORMATTED}
                 </a>
               </li>
               <li className="text-gray-400">

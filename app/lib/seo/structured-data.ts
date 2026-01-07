@@ -1,14 +1,17 @@
+import { WHATSAPP_URL, CONTACT_EMAIL } from '../constants/contact';
+import { SITE_URL, LOGO_IMAGOTIPO_URL, FACEBOOK_URL, LINKEDIN_URL } from '../constants/urls';
+
 export const structuredData = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
-  "@id": "https://code200ti.com",
+  "@id": SITE_URL,
   "name": "CODE 200 TI",
   "description": "Desarrollo web profesional en Perú. Especialistas en sitios web modernos, sistemas personalizados y diseño UI/UX. Servicios remotos desde Chiclayo, Lambayeque, Perú.",
-  "url": "https://code200ti.com",
-  "logo": "https://code200ti.com/images/logos/imagotipo-code-200-ti.webp",
-  "image": "https://code200ti.com/images/logos/imagotipo-code-200-ti.webp",
+  "url": SITE_URL,
+  "logo": LOGO_IMAGOTIPO_URL,
+  "image": LOGO_IMAGOTIPO_URL,
   "telephone": "+51-970-842-545",
-  "email": "code200ti@gmail.com",
+  "email": CONTACT_EMAIL,
   "openingHoursSpecification": {
     "@type": "OpeningHoursSpecification",
     "dayOfWeek": [
@@ -87,9 +90,9 @@ export const structuredData = {
     }
   ],
   "sameAs": [
-    "https://www.facebook.com/share/1PJXVJie5L/",
-    "https://linkedin.com/company/code-200-ti",
-    "https://wa.me/51970842545"
+    FACEBOOK_URL,
+    LINKEDIN_URL,
+    WHATSAPP_URL
   ],
   "service": [
     {

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import { SITE_URL } from '../constants/urls';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://code200ti.com'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "CODE 200 TI - Desarrollo Web Profesional",
     template: "%s | CODE 200 TI"
@@ -57,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'es_PE',
-    url: 'https://code200ti.com',
+    url: SITE_URL,
     siteName: 'CODE 200 TI',
     title: 'CODE 200 TI - Desarrollo Web Profesional',
     description: 'Transformo ideas en experiencias digitales. Desarrollo sitios web modernos, sistemas personalizados y diseños que impulsan tu negocio al siguiente nivel.',
@@ -77,7 +78,7 @@ export const metadata: Metadata = {
     images: ['/images/logos/imagotipo-code-200-ti.webp'],
   },
   alternates: {
-    canonical: 'https://code200ti.com',
+    canonical: SITE_URL,
   },
   icons: {
     icon: [
